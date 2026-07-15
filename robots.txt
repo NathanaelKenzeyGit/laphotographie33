@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.aurelien-lambert-photographe.fr/sitemap.xml

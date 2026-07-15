@@ -1,0 +1,2520 @@
+// ============================================================
+//  LAPHOTOGRAPHIE33 — main.scss
+//  Fichier CSS unique fusionné depuis 14 composants séparés
+//  Stratégie : classes de page sur <body> pour scoper les
+//  sélecteurs nus qui entraient en conflit
+// ============================================================
+
+@use 'sass:color';
+
+// ============================================================
+//  VARIABLES GLOBALES
+// ============================================================
+
+$color-primary: #ea9981;
+$color-text-dark: #333333;
+$color-dark: #000000;
+$color-light: #ffffff;
+$color-glass-bg: rgba(255, 255, 255, 0.15);
+$color-glass-shadow: rgba(0, 0, 0, 0.1);
+
+$font-playfair: 'playfair-regular', Georgia, serif;
+$font-montserrat: 'montserrat-regular', Arial, sans-serif;
+$font-inter: 'inter-regular', Arial, sans-serif;
+
+$letter-spacing-logo: 3px;
+
+// ============================================================
+//  @FONT-FACE (déclarés une seule fois)
+// ============================================================
+
+@font-face {
+  font-family: 'inter-medium';
+  src: url(/assets/fonts/Inter/Inter_18pt-Medium.ttf) format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'inter-regular';
+  src: url(/assets/fonts/Inter/Inter_28pt-Regular.ttf) format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'inter-extra-light';
+  src: url(/assets/fonts/Inter/Inter_18pt-ExtraLight.ttf) format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'playfair-regular';
+  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'playfair-light';
+  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'playfair-display';
+  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'playfair-display-bold';
+  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Bold.woff) format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'playfair-display-italic';
+  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Italic.woff) format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'montserrat-medium';
+  src: url(/assets/fonts/Montserrat/Montserrat-Medium.woff) format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'montserrat-regular';
+  src: url(/assets/fonts/Montserrat/Montserrat-Regular.woff) format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'montserrat-light';
+  src: url(/assets/fonts/Montserrat/Montserrat-Light.woff) format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url(/assets/fonts/Montserrat/Montserrat-Regular.woff) format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Miama';
+  src: url(/assets/fonts/Miama/Miama.otf) format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url(/assets/fonts/Montserrat/Montserrat-Medium.woff) format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+// ============================================================
+//  COMPOSANTS PARTAGÉS
+//  (utilisés sur plusieurs pages, pas de scope nécessaire)
+// ============================================================
+
+// --- BENTO GRID ---
+// Utilisé sur : animalier, mariage, portraits, galerie
+// Note : les hauteurs peuvent légèrement varier par page ;
+//        surcharger via .page-xxx .bento-small si besoin.
+
+.bento-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bento-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 15px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.bento-small {
+  height: 190px;
+}
+.bento-medium {
+  height: 300px;
+}
+.bento-large {
+  height: 415px;
+}
+
+.bento-vertical {
+  height: 100%;
+  min-height: calc(195px * 2 + 16px);
+
+  @media (max-width: 767.98px) {
+    height: 100px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .bento-small,
+  .bento-medium,
+  .bento-large {
+    height: 250px;
+  }
+}
+
+// --- GALERIE FILTRÉE / LIGHTBOX ---
+// Utilisé sur : accueil (aperçu), prestations (galerie complète filtrable)
+
+.galerie-filter-btn {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0;
+  background-color: transparent;
+  color: $color-light;
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+
+  &.active {
+    background-color: $color-primary;
+    border-color: $color-primary;
+    color: $color-dark;
+  }
+}
+
+.galerie-filter-item {
+  aspect-ratio: 1 / 1;
+
+  img {
+    transform: none;
+  }
+}
+
+.galerie-filter-btn-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img,
+  &:focus-visible img {
+    transform: scale(1.05);
+  }
+}
+
+// --- BANDEAU DE LOGOS DÉFILANT (marquee CSS pur, pas de JS) ---
+// Utilisé sur : accueil (section "Référence")
+// Le même jeu de logos est dupliqué deux fois dans le HTML : l'animation glisse le
+// track de 0 à -50%, donc la 2e moitié (identique) prend exactement le relais de la
+// 1re pour un défilement sans coupure visible.
+
+.logos-marquee-label {
+  font-family: 'montserrat-medium', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: $color-text-dark;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.logos-marquee {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+
+  &__track {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+    width: max-content;
+    animation: logos-marquee-scroll 28s linear infinite;
+  }
+
+  &__logo {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.55;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes logos-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logos-marquee__track {
+    animation: none;
+  }
+}
+
+// --- PRESTATION CARDS (cartes icône + texte, fond noir) ---
+// Utilisé sur : animalier, mariage, portraits
+
+.prestation-card {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  background-color: transparent;
+
+  .prestation-card-title {
+    font-family: 'playfair-display-bold', Georgia, serif;
+    color: $color-light;
+    font-size: 1.375rem;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+  }
+
+  p {
+    font-family: $font-montserrat;
+    color: $color-light;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+    letter-spacing: 0.5px;
+  }
+}
+
+// Alias utilisé dans mariage / portraits (même composant, nom différent)
+.mariage-cards {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  background-color: transparent;
+
+  .btn {
+    background-color: $color-primary;
+    border: none;
+
+    &:hover {
+      box-shadow: inset 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+      background-color: $color-primary;
+      border: none;
+    }
+  }
+}
+
+.mariage-icons {
+  color: $color-primary;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.mariage-h2 {
+  font-family: 'playfair-display', Georgia, serif;
+}
+
+.mariage-h3 {
+  font-family: 'playfair-display-bold', Georgia, serif;
+}
+
+.mariage-h4 {
+  color: $color-primary;
+}
+
+.mariage-cards-text {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.mariage-banner-img {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  display: block;
+}
+
+.maternite-banner-img {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  display: block;
+}
+
+.text-montserrat {
+  font-family: 'montserrat', Arial, sans-serif;
+}
+
+// --- FORMULE CARDS (tarifs) ---
+// Utilisé sur : animalier (version BEM), mariage/portraits (version simple)
+
+.formules {
+  &__titre {
+    font-family: $font-playfair;
+    font-size: clamp(1.4rem, 2.2vw, 1.875rem);
+    font-weight: 400;
+    color: $color-light;
+    letter-spacing: 1px;
+    text-transform: none;
+  }
+}
+
+.formule-card {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 32px 32px;
+
+  &__header {
+    text-align: center;
+    padding-bottom: 24px;
+  }
+
+  &__label {
+    display: block;
+    font-family: $font-playfair;
+    font-size: 18px;
+    color: $color-light;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    margin-bottom: 2px;
+  }
+
+  &__name {
+    font-family: $font-playfair;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: $color-light;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+  }
+
+  &__from {
+    font-family: $font-playfair;
+    font-style: italic;
+    font-size: 0.9375rem;
+    color: $color-light;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    margin-bottom: 6px;
+  }
+
+  &__price {
+    font-family: $font-playfair;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: $color-primary;
+    letter-spacing: 0;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+
+  &__list {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 24px;
+    margin-top: 24px;
+    flex: 1;
+
+    p {
+      font-family: $font-montserrat;
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+  }
+
+  &__check {
+    color: rgba(255, 255, 255, 0.45);
+    flex-shrink: 0;
+    font-size: 0.75rem;
+  }
+
+  &__footer {
+    padding-top: 24px;
+  }
+
+  &__btn {
+    display: block;
+    width: 100%;
+    padding: 13px 16px;
+    background-color: $color-primary;
+    color: $color-light;
+    border: none;
+    font-family: $font-montserrat;
+    font-size: 0.6875rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      background-color: color.adjust(#ea9981, $lightness: -10%);
+      color: $color-light;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .formule-card {
+    padding: 32px 24px 24px;
+
+    &__name {
+      font-size: 2rem;
+    }
+    &__price {
+      font-size: 2.75rem;
+    }
+  }
+}
+
+// --- SECTION INTRO NOIRE (bandeau texte) ---
+// Utilisé sur : animalier, prestations
+
+.prestations-intro {
+  padding: 90px 0;
+  background-color: $color-dark;
+
+  @media (max-width: 768px) {
+    padding: 60px 0;
+  }
+
+  .main-text-section__titre {
+    font-family: $font-playfair;
+    font-size: 36px;
+    font-weight: 200;
+    color: $color-light;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    text-transform: none;
+  }
+
+  .main-text-section__content {
+    font-family: $font-montserrat;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+// --- HERO PRESTATIONS (fond photo + texte) ---
+// Utilisé sur : animalier, prestations
+// La background-image est surchargée par page (voir sections page-xxx)
+
+.hero-prestations {
+  position: relative;
+  min-height: 60vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 60px 0;
+  overflow: hidden;
+
+  .container,
+  .hero-text-box {
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 45vh;
+    padding: 40px 0;
+  }
+
+  .hero-title {
+    font-family: $font-playfair;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: $color-text-dark;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    .text-script {
+      font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+      color: $color-primary;
+      text-transform: none;
+      font-size: 1.3em;
+      letter-spacing: 0;
+    }
+
+    .title-indent {
+      display: inline-block;
+      margin-left: 20px;
+      white-space: nowrap;
+
+      @media (min-width: 768px) {
+        margin-left: 60px;
+      }
+    }
+  }
+
+  .hero-subtitle {
+    font-family: $font-montserrat;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    line-height: 1.6;
+    color: $color-text-dark;
+    max-width: 450px;
+  }
+}
+
+// --- ILLUSTRATION CONTACT (card flottante) ---
+
+.illustration-contact {
+  position: relative;
+  width: 100%;
+  min-height: 585px;
+  margin: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__card {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: min(946px, calc(100% - 40px));
+    min-height: 295px;
+    margin: -68px auto 0;
+    padding: 40px;
+    background-color: $color-light;
+    border-radius: 16px;
+    box-shadow:
+      4px 4px 4px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25);
+
+    .illustration-contact__card-title {
+      margin: 0;
+      color: #2a160a;
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 60px;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    .illustration-contact__description {
+      max-width: 650px;
+      color: #6b6258;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 17px;
+      line-height: 20px;
+      letter-spacing: 0.1em;
+    }
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: min(320px, 100%);
+    min-height: 69px;
+    padding: 21px 18px;
+    color: $color-dark;
+    background-color: #e99981;
+    border: 0;
+    border-radius: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 2px;
+    font-variant-caps: all-small-caps;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    transition:
+      background-color 0.25s ease,
+      transform 0.25s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: $color-dark;
+      background-color: #df856d;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .illustration-contact {
+    min-height: 407px;
+    background-color: $color-dark;
+    background-image: url('/assets/img/contact__image.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+
+    &__image {
+      display: none;
+    }
+
+    &__card {
+      width: min(312px, calc(100% - 32px));
+      min-height: 157px;
+      margin: 139px auto 0;
+      padding: 16px 8px;
+      gap: 10px;
+
+      .illustration-contact__card-title {
+        max-width: 292px;
+        font-size: 15px;
+        line-height: 16.41px;
+      }
+
+      .illustration-contact__description {
+        max-width: 288px;
+        font-size: 12px;
+        line-height: 20px;
+      }
+    }
+
+    &__button {
+      width: 195px;
+      height: 44.9px;
+      min-height: 44.9px;
+      padding: 0 14px;
+      font-size: 15px;
+      line-height: 1;
+      letter-spacing: 0.1em;
+    }
+  }
+}
+
+// ============================================================
+//  PAGE : NAVBAR
+//  <body class="page-navbar">
+// ============================================================
+
+.navbar-glass {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
+  transition:
+    background-color 0.4s ease,
+    backdrop-filter 0.4s ease; // Transición suave
+
+  // Fondo inicial transparente
+  background-color: transparent;
+
+  &.scrolled {
+    background-color: $color-glass-bg !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px $color-glass-shadow;
+  }
+}
+
+.logo-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  display: inline-block;
+
+  // Ajuste del tamaño de la imagen dentro del logo
+  .logo-img {
+    width: 120px;
+    height: auto;
+    display: block;
+  }
+}
+.nav-links {
+  a {
+    font-family: $font-playfair !important;
+    text-decoration: none !important;
+    white-space: nowrap;
+
+    // ELIMINAMOS 'color: inherit !important'
+    // Ahora el color lo definen exclusivamente los temas (dark/light)
+    font-size: 24px;
+    transition:
+      opacity 0.2s ease,
+      color 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none !important;
+      opacity: 0.7; // Esto crea el efecto de desvanecimiento
+    }
+  }
+}
+
+// Entre l'apparition du menu horizontal (lg, 992px) et le confort du xl (1200px),
+// la colonne centrale (col-lg-6) est trop étroite pour 6 liens + CTA à 24px/gap-4 :
+// ça déborde et chevauche le logo/bouton "Contactez-moi". On resserre uniquement
+// sur cette tranche plutôt que de repousser encore le point de bascule mobile/desktop.
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .nav-links {
+    gap: 0.85rem !important;
+
+    a {
+      font-size: 15px;
+    }
+  }
+
+  .btn-cta--navbar {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+  }
+}
+
+// Thème sombre
+.nav-theme-dark {
+  .nav-links a {
+    color: $color-dark;
+
+    &:hover {
+      color: $color-light;
+      opacity: 1;
+    }
+  }
+
+  .menu-burger-btn i {
+    color: $color-dark;
+  }
+
+  .btn-cta--navbar {
+    background-color: transparent;
+    color: $color-dark;
+    border: 1px solid $color-dark;
+    font-family: $font-playfair;
+    font-size: 20px;
+
+    &:hover {
+      background-color: $color-dark;
+      color: $color-light;
+    }
+  }
+}
+
+// Thème clair
+.nav-theme-light {
+  .nav-links a {
+    color: $color-light;
+
+    &:hover {
+      color: $color-dark;
+      opacity: 1;
+    }
+  }
+
+  .menu-burger-btn i {
+    color: $color-light;
+  }
+
+  .btn-cta--navbar {
+    background-color: transparent;
+    color: $color-light;
+    border: 1px solid $color-light;
+    font-family: $font-playfair;
+    font-size: 20px;
+
+    &:hover {
+      background-color: $color-light;
+      color: $color-dark;
+    }
+  }
+}
+
+.btn-cta {
+  background-color: $color-primary;
+  color: $color-light;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-family: $font-montserrat;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: color.adjust(#ea9981, $lightness: -10%);
+    color: $color-light;
+  }
+}
+
+// ============================================================
+//  PAGE : FOOTER
+//  <body class="page-footer">
+//  Sélecteurs nus scopés : h2, p, a, span, *
+// ============================================================
+
+.page-footer {
+  * {
+    font-family: 'inter-regular', Arial, sans-serif;
+  }
+
+  body {
+    border-top: 1px solid white;
+  }
+
+  .footer-body-border {
+    border-top: 1px solid white;
+  }
+
+  .footer-text,
+  .footer-text p,
+  .footer-text a,
+  .footer-text span {
+    font-size: 12px;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+
+  .footer-heading {
+    font-size: 16px;
+    font-family: 'inter-medium', Arial, sans-serif;
+    color: $color-primary;
+  }
+
+  .footer-link {
+    color: inherit;
+    text-decoration: none;
+    font-size: 12px;
+
+    &:hover {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+// ============================================================
+//  PAGE : CONTACT
+//  <body class="page-contact">
+//  Sélecteurs nus scopés : *, h1, p, button
+// ============================================================
+
+.page-contact {
+  * {
+    font-family: 'playfair-display', Georgia, serif;
+  }
+
+  .contact-banner-mobile {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: 50% 45%;
+    display: block;
+  }
+
+  .contact-banner-desktop {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    object-position: 10% 15%;
+    display: block;
+  }
+
+  .contact-hero-title {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    font-family: 'playfair-display-bold', Georgia, serif;
+
+    .contact-hero-title__highlight {
+      color: $color-primary;
+      font-family: 'playfair-display-italic', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+    }
+  }
+
+  .contact-table {
+    font-size: clamp(0.75rem, 1.5vw, 1.25rem);
+
+    .contact-table__bold {
+      font-family: 'playfair-display-bold', Georgia, serif;
+    }
+  }
+
+  .contact-h3-italic {
+    font-family: 'playfair-display-italic', Georgia, serif;
+  }
+
+  .contact-btn {
+    background-color: $color-primary;
+    border: none;
+
+    &:hover {
+      box-shadow: inset 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+      background-color: $color-primary;
+      border: none;
+    }
+  }
+
+  .contact-font {
+    font-family: 'inter-regular', Arial, sans-serif;
+  }
+
+  .text-orange {
+    color: $color-primary;
+  }
+
+  .contact-text-extralight {
+    font-family: 'inter-extra-light', Arial, sans-serif;
+    font-size: clamp(0.75rem, 1vw, 1rem);
+  }
+
+  .contact-logos img {
+    opacity: 0.5;
+  }
+
+  .contact-step-indicator {
+    font-family: 'inter-extra-light', Arial, sans-serif;
+    font-size: clamp(0.75rem, 1vw, 1rem);
+  }
+}
+
+// ============================================================
+//  PAGE : À PROPOS
+//  <body class="page-about">
+// ============================================================
+
+.page-about {
+  // HERO
+  .hero-about {
+    background-image: url('/assets/img/aurelien-5.webp');
+    background-size: cover;
+    background-position: right 99% center;
+    background-repeat: no-repeat;
+    font-family: $font-playfair;
+    min-height: 55vh;
+    padding-top: 100px;
+    padding-bottom: 50px;
+
+    @media (max-width: 768px) {
+      min-height: 80vh;
+      background-position: center;
+    }
+
+    &__overlay {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 100%);
+
+      @media (max-width: 768px) {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.8) 100%);
+      }
+    }
+
+    &__title {
+      font-family: $font-playfair;
+      font-size: 64px;
+      line-height: 1.1;
+      letter-spacing: 1px;
+
+      // .text-uppercase.fw-bold (poids 700) sur "LAMBERT" : 'playfair-regular' n'a
+      // qu'une seule graisse déclarée, donc le navigateur ne trouve pas de 700 et
+      // saute au fallback suivant de la pile (Georgia Bold, visuellement une tout
+      // autre police). On pointe explicitement vers la vraie graisse grasse.
+      span {
+        font-family: 'playfair-display-bold', Georgia, serif;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 32px;
+      }
+    }
+
+    &__text {
+      font-family: 'montserrat-medium', sans-serif;
+      font-size: 24px;
+      line-height: 1.6;
+      max-width: 90%;
+      opacity: 0.9;
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  // INTRO
+  .about-intro {
+    background-color: $color-dark;
+    // Même précaution que .bio-photographe : l'entrée GSAP anime __img/__title/__content
+    // depuis un décalage x:±40px (cf. main.js), sans quoi cet état initial hors-écran
+    // élargit .documentElement.scrollWidth avant même que l'animation ne se joue.
+    overflow-x: hidden;
+
+    &__title {
+      font-family: $font-playfair;
+      font-size: 40px;
+      line-height: 1.3;
+      font-weight: normal;
+
+      @media (max-width: 768px) {
+        font-size: 24px;
+      }
+    }
+
+    &__highlight {
+      @media (min-width: 768px) {
+        font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+        color: #c87b57;
+        font-size: 1.25em;
+        font-weight: normal;
+        display: inline-block;
+        transform: translateY(2px);
+      }
+      @media (max-width: 767px) {
+        font-family: inherit;
+        color: inherit;
+        font-size: inherit;
+        text-transform: lowercase;
+      }
+    }
+
+    &__content {
+      .about-intro__paragraph {
+        font-family: $font-montserrat;
+        font-size: 24px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 1.5rem;
+
+        @media (max-width: 768px) {
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+      }
+    }
+
+    &__img {
+      object-fit: cover;
+      border-radius: 2px;
+    }
+  }
+
+  // PRINCIPES
+  .about-principles {
+    background-color: $color-light;
+    color: $color-dark;
+
+    &__title {
+      font-family: $font-playfair;
+      font-size: 48px;
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+
+      span {
+        font-family: $font-playfair;
+        font-style: italic;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 36px;
+      }
+    }
+
+    &__box {
+      border-color: #1a1a1a !important;
+    }
+
+    &__item {
+      @media (max-width: 767px) {
+        &:not(:last-child) {
+          border-bottom: 1px solid #1a1a1a;
+          padding-bottom: 2rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    &__number {
+      font-family: $font-playfair;
+      font-size: 48px;
+      color: #6c757d;
+
+      @media (max-width: 768px) {
+        font-size: 40px;
+      }
+    }
+
+    &__subtitle {
+      font-family: $font-playfair;
+      font-size: 48px;
+      line-height: 1.1;
+
+      @media (max-width: 768px) {
+        font-size: 40px;
+      }
+    }
+
+    &__text {
+      font-family: $font-playfair;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #1a1a1a;
+    }
+  }
+
+  // STATS
+  .about-stats {
+    background-color: $color-dark;
+    color: $color-light;
+    font-family: $font-playfair;
+
+    &__title {
+      font-size: 40px;
+      line-height: 1.3;
+      letter-spacing: 0.5px;
+      font-weight: normal;
+
+      @media (max-width: 768px) {
+        font-size: 36px;
+      }
+    }
+
+    &__divider {
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      opacity: 1;
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &--bordered {
+        @media (min-width: 768px) {
+          border-left: 1px solid rgba(255, 255, 255, 0.4);
+          border-right: 1px solid rgba(255, 255, 255, 0.4);
+        }
+      }
+
+      @media (max-width: 767px) {
+        &:not(:last-child) {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+          padding-bottom: 2rem;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+
+    &__number {
+      font-size: 96px;
+      line-height: 1;
+
+      @media (max-width: 768px) {
+        font-size: 64px;
+      }
+    }
+
+    &__label {
+      font-size: 32px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 15px;
+
+      @media (max-width: 768px) {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+// ============================================================
+//  PAGE : FAQ
+//  <body class="page-faq">
+// ============================================================
+
+.page-faq {
+  // HERO
+  .hero-faq {
+    background-image: url('/assets/img/mariage/mariage-7.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    min-height: 50vh;
+
+    @media (max-width: 768px) {
+      min-height: 45vh;
+    }
+
+    .hero-faq__title {
+      font-family: $font-playfair;
+      font-size: 80px;
+      color: $color-light;
+      margin: 0;
+      letter-spacing: 4px;
+
+      @media (max-width: 768px) {
+        font-size: 40px;
+      }
+    }
+
+    .hero-faq__text-box {
+      background-color: rgba(0, 0, 0, 0.7);
+      display: inline-block;
+      padding: 15px 45px;
+      border-radius: 5px;
+    }
+  }
+
+  // TITRE FAQ
+  .faq-title {
+    font-family: $font-playfair;
+    color: $color-light;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  // TIMELINE
+  .faq-steps-section {
+    padding: 80px 0;
+
+    .step-card {
+      position: relative;
+      padding-bottom: 40px;
+      padding-left: 50px;
+
+      .step-number {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 32px;
+        height: 32px;
+        background-color: $color-primary;
+        color: $color-dark;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'playfair-display-bold', Georgia, serif;
+        z-index: 2;
+      }
+
+      .step-line {
+        position: absolute;
+        background-color: $color-primary;
+        z-index: 1;
+        left: 15px;
+        top: 40px;
+        width: 2px;
+        height: calc(100% - 40px);
+      }
+
+      @media (min-width: 992px) {
+        padding-left: 0;
+        padding-top: 60px;
+
+        .step-number {
+          top: 0;
+          left: 0;
+        }
+
+        .step-line {
+          top: 15px;
+          left: 45px;
+          width: calc(100% - 60px);
+          height: 2px;
+        }
+      }
+
+      .step-title {
+        font-family: $font-playfair;
+        font-size: 22px;
+        color: $color-light;
+        margin-top: 0;
+        margin-bottom: 5px;
+      }
+
+      .step-subtitle {
+        display: block;
+        font-family: 'playfair-light', serif;
+        font-style: italic;
+        color: $color-light;
+        margin-bottom: 12px;
+      }
+
+      .step-text {
+        font-family: $font-montserrat;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  // ACCORDION FAQ
+  .faq-questions {
+    padding-bottom: 80px;
+
+    &__column-title {
+      font-family: $font-playfair;
+      font-size: 28px;
+      letter-spacing: 1px;
+
+      @media (max-width: 768px) {
+        font-size: 22px;
+        text-align: center;
+      }
+    }
+
+    &__item {
+      background-color: $color-light;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    &__trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      cursor: pointer;
+
+      &[aria-expanded='true'] {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+        .faq-questions__icon {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &__title {
+      font-family: 'montserrat-medium', sans-serif;
+      font-size: 16px;
+      color: $color-text-dark;
+      padding-right: 15px;
+      line-height: 1.4;
+    }
+
+    &__icon-wrapper {
+      width: 36px;
+      height: 36px;
+      background-color: $color-primary;
+      color: $color-light;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background-color 0.2s ease;
+    }
+
+    &__icon {
+      font-size: 14px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    &__body {
+      padding: 20px 24px;
+      background-color: #fafafa;
+    }
+
+    &__text {
+      font-family: $font-montserrat;
+      font-size: 14px;
+      color: #555555;
+      margin: 0;
+      line-height: 1.6;
+    }
+  }
+}
+
+// ============================================================
+//  PAGE : ANIMALIER
+//  <body class="page-animalier">
+//  Surcharge du hero et du letter-spacing global
+// ============================================================
+
+.page-animalier {
+  * {
+    letter-spacing: 2px;
+  }
+
+  .hero-prestations {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/assets/img/animalier/canin-9.webp');
+      background-repeat: no-repeat;
+      background-size: 120%;
+      background-position: 35% 60%;
+      transform: scaleX(-1);
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      min-height: 45vh;
+
+      &::before {
+        background-image: url('/assets/img/animalier/canin-8.webp');
+        background-size: cover;
+        background-position: 50% 40%;
+        transform: none;
+      }
+    }
+  }
+
+  .prestations-intro {
+    padding: 30px 0;
+
+    @media (max-width: 768px) {
+      padding: 60px 0;
+    }
+  }
+}
+
+// ============================================================
+//  PAGE : ACCUEIL — sections additionnelles
+//  (bio photographe, aperçu galerie, avis)
+// ============================================================
+
+.bio-photographe {
+  // L'entrée GSAP anime __label/__title/__text depuis un décalage x:40px (cf. main.js) ;
+  // sans ce overflow-x, cet état initial hors-écran élargit .documentElement.scrollWidth
+  // et crée un débordement horizontal fantôme avant même que l'animation ne se joue.
+  overflow-x: hidden;
+
+  &__img {
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  &__label {
+    color: $color-primary;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+  }
+
+  &__title {
+    font-family: $font-playfair;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  &__text {
+    font-family: $font-inter;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+}
+
+.galerie-apercu-item {
+  aspect-ratio: 1 / 1;
+}
+
+.galerie-mosaique-item {
+  aspect-ratio: 4 / 3;
+
+  &.col-md-6 {
+    aspect-ratio: 8 / 3;
+  }
+}
+
+.instagram-cta {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+
+  &:hover {
+    background-color: $color-light;
+    color: $color-dark;
+  }
+}
+
+.avis-section {
+  &__divider {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    opacity: 1;
+  }
+}
+
+.avis-card {
+  height: 100%;
+  background-color: #f5f3f0;
+  color: $color-text-dark;
+  border-radius: 8px;
+  padding: 24px;
+
+  &__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    flex-shrink: 0;
+  }
+
+  &__name {
+    font-family: $font-inter;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  &__stars {
+    color: $color-primary;
+    letter-spacing: 2px;
+  }
+
+  &__text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+// ============================================================
+//  PAGE : PRESTATIONS (hub)
+//  <body class="page-prestations">
+// ============================================================
+
+.page-prestations {
+  * {
+    letter-spacing: 2px;
+  }
+
+  .hero-prestations {
+    background-image: url('/assets/img/portrait/portrait-12.webp');
+    background-position: 100% 35%;
+
+    @media (max-width: 768px) {
+      background-position: 80% 30%;
+
+      .hero-text-box {
+        background-color: rgba(255, 255, 255, 0.5);
+        padding: 20px;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+// ============================================================
+//  PAGE : MARIAGE
+//  <body class="page-mariage">
+// ============================================================
+
+.page-mariage {
+  .mariage-banner-img {
+    object-position: 50% 57%;
+  }
+}
+
+// ============================================================
+//  PAGE : PORTRAITS
+//  <body class="page-portraits">
+//  (Structure identique à mariage, seul object-position diffère)
+// ============================================================
+
+.page-portraits {
+  .mariage-banner-img {
+    object-position: 50% 55%;
+  }
+}
+
+// ============================================================
+//  PAGE : GALERIE (boutons + bento)
+//  <body class="page-galerie">
+//  Sélecteur nu * scopé
+// ============================================================
+
+.page-galerie {
+  * {
+    font-family: 'playfair-display', Georgia, serif;
+  }
+}
+
+// ============================================================
+//  PAGE : SECTION PRESTATIONS (cards hub accueil)
+//  <body class="page-section-prestations">
+//  Sélecteurs nus scopés : h2, p, button
+// ============================================================
+
+.page-section-prestations {
+  .section-presta__title {
+    font-family: 'playfair-display', Georgia, serif;
+
+    .section-presta__title-bold {
+      font-family: 'playfair-display-bold', Georgia, serif;
+    }
+  }
+
+  .section-presta__btn {
+    font-family: 'playfair-display', Georgia, serif;
+  }
+
+  .section-presta__price {
+    font-size: clamp(0.65rem, 1.5vw, 1rem);
+    font-family: 'montserrat-light', Arial, sans-serif;
+
+    .section-presta__price-amount {
+      font-family: 'montserrat-medium', Arial, sans-serif;
+    }
+  }
+
+  .presta-title {
+    width: 250px;
+    font-family: 'montserrat-medium', Arial, sans-serif;
+    font-size: clamp(0.75rem, 1.5vw, 1.25rem);
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+    object-position: 50% 45%;
+    display: block;
+
+    &--maternite {
+      width: 100%;
+      height: 30vh;
+      object-fit: cover;
+      object-position: 15% 45%;
+      display: block;
+    }
+
+    &__big {
+      height: 30vh;
+      object-fit: cover;
+      object-position: 50% 25%;
+      display: block;
+    }
+  }
+}
+
+// ============================================================
+//  PAGE : BLOG
+//  <body class="page-blog">
+// ============================================================
+
+.page-blog {
+  // HERO
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 426px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: $color-dark;
+
+    &__image {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: translateX(35%) scale(1.9);
+      transform-origin: center;
+    }
+
+    &__overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.48) 48%,
+        rgba(0, 0, 0, 0.18) 100%
+      );
+      pointer-events: none;
+    }
+
+    &__navbar {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 74.5px;
+    }
+
+    &__text {
+      position: absolute;
+      top: 74.5px;
+      left: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      width: 671px;
+      min-height: 288px;
+      padding: 10px 50px;
+      color: $color-light;
+    }
+
+    &__title {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      margin: 0 0 48px;
+      color: $color-light;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 64px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0.08em;
+    }
+
+    &__title-normal {
+      color: $color-light;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: normal;
+    }
+
+    &__title-script {
+      color: #e99981;
+      font-family: 'Miama', cursive;
+      font-size: 64px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.08em;
+    }
+
+    &__description {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 571px;
+      margin: 0;
+      color: $color-light;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+  }
+
+  // NAVIGATION CATÉGORIES
+  .blog-categories-navigation {
+    width: 100%;
+    height: auto;
+    padding: 50px 25px 50px 50px;
+    background-color: $color-light;
+  }
+
+  .blog-categories-list {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 50px;
+    width: fit-content;
+    min-height: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .blog-category-link {
+    display: block;
+    color: $color-dark;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &:focus,
+    &.active {
+      color: #ef927b;
+    }
+  }
+
+  .blog-filters-mobile {
+    width: 100%;
+  }
+
+  .filters-toggle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    color: $color-dark;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: #ef927b;
+    }
+    &:focus-visible {
+      outline: 2px solid #ef927b;
+      outline-offset: 4px;
+    }
+  }
+
+  .mobile-filters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin: 18px 0 0;
+    padding: 18px 0 0;
+    border-top: 1px solid #dddddd;
+    list-style: none;
+
+    li {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      display: block;
+      color: $color-dark;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.2;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+
+      &:hover,
+      &:focus {
+        color: #ef927b;
+      }
+    }
+  }
+
+  // CONTENU
+  .blog-content {
+    padding: 0 50px 60px 50px;
+  }
+
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .article-card {
+    border: none;
+    border-radius: 0;
+    background-color: rgba(217, 217, 217, 0.8);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+
+    .article-card-col-img {
+      flex: 0 0 auto;
+      width: 50%;
+      height: 300px;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .article-card-col-text {
+      flex: 1 1 auto;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 30px 20px 30px 70px;
+      overflow: hidden;
+    }
+  }
+
+  .article-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%);
+  }
+
+  .article-category {
+    display: block;
+    color: $color-primary;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .article-card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+    color: $color-dark;
+    margin: 0;
+  }
+
+  .article-card-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: $color-dark;
+    margin: 0;
+  }
+
+  .article-date {
+    display: block;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0;
+  }
+
+  .article-button {
+    display: inline-block;
+    width: fit-content;
+    padding: 5px 15px;
+    background-color: $color-primary;
+    color: $color-light;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-decoration: none;
+    border: none;
+    border-radius: 0;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+
+    &:hover,
+    &:focus {
+      background-color: #d4806a;
+      color: $color-light;
+    }
+  }
+
+  // SIDEBAR
+  .blog-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 8px;
+
+    .form-control {
+      border: 1px solid #cccccc;
+      border-radius: 0;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14px;
+      color: $color-dark;
+      padding: 10px 14px;
+      background-color: $color-light;
+
+      &::placeholder {
+        color: #999999;
+      }
+      &:focus {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 0.15rem rgba(234, 153, 129, 0.25);
+      }
+    }
+  }
+
+  .search-wrapper {
+    position: relative;
+
+    .form-control {
+      padding-right: 40px;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $color-primary;
+      font-size: 16px;
+      pointer-events: none;
+    }
+  }
+
+  .sidebar-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: $color-dark;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dddddd;
+  }
+
+  .sidebar-categories {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: $color-dark;
+    }
+
+    a {
+      color: $color-dark;
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+
+    .count {
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 13px;
+    }
+  }
+
+  .sidebar-popular {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .popular-article {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-decoration: none;
+    color: $color-dark;
+
+    &:hover .popular-article__title {
+      color: $color-primary;
+    }
+
+    &__image {
+      width: 72px;
+      height: 56px;
+      object-fit: cover;
+      flex-shrink: 0;
+      filter: grayscale(100%);
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    &__title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.3;
+      color: $color-dark;
+      transition: color 0.2s ease;
+    }
+
+    &__date {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  // RESPONSIVE BLOG
+  @media (max-width: 991.98px) {
+    .hero__image {
+      transform: translateX(20%) scale(1.5);
+    }
+    .hero__text {
+      width: 620px;
+    }
+    .hero__title {
+      font-size: 56px;
+    }
+    .hero__title-script {
+      font-size: 56px;
+    }
+    .hero__description {
+      width: 520px;
+      font-size: 21px;
+    }
+    .blog-categories-list {
+      gap: 28px;
+    }
+    .blog-category-link {
+      font-size: 19px;
+    }
+    .blog-content {
+      padding: 0 24px 40px 24px;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .hero {
+      min-height: 360px;
+    }
+    .hero__image {
+      object-position: 65% center;
+      transform: none;
+    }
+    .hero__overlay {
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.52) 60%,
+        rgba(0, 0, 0, 0.25) 100%
+      );
+    }
+    .hero__navbar {
+      height: 40px;
+    }
+    .hero__text {
+      top: 40px;
+      right: 0;
+      left: 0;
+      width: 100%;
+      min-height: auto;
+      padding: 24px 20px;
+    }
+    .hero__title {
+      gap: 10px;
+      margin-bottom: 65px;
+      font-size: 46px;
+      letter-spacing: 0.04em;
+    }
+    .hero__title-script {
+      font-size: 48px;
+      letter-spacing: 0.04em;
+    }
+    .hero__description {
+      width: 100%;
+      font-size: 18px;
+      line-height: 1.35;
+    }
+    .hero__description span {
+      display: inline;
+    }
+    .blog-categories-navigation {
+      padding: 24px 16px;
+    }
+    .blog-categories-list {
+      display: none !important;
+    }
+    .blog-filters-mobile {
+      display: block !important;
+    }
+    .blog-content {
+      padding: 0 16px 40px 16px;
+    }
+    .article-card {
+      height: auto;
+      flex-direction: column;
+    }
+    .article-card .article-card-col-img {
+      width: 100%;
+      height: 220px;
+    }
+    .article-card .article-card-col-text {
+      height: auto;
+      padding: 20px 16px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .blog-categories-list {
+      display: flex !important;
+    }
+    .blog-filters-mobile {
+      display: none !important;
+    }
+    .article-card-image {
+      height: 100%;
+      min-height: 190px;
+    }
+  }
+
+  @media (max-width: 399.98px) {
+    .hero {
+      min-height: 340px;
+    }
+    .hero__text {
+      padding: 20px 16px;
+    }
+    .hero__title {
+      margin-bottom: 55px;
+      font-size: 39px;
+    }
+    .hero__title-script {
+      font-size: 42px;
+    }
+    .hero__description {
+      font-size: 16px;
+    }
+    .blog-categories-navigation {
+      padding: 20px 16px;
+    }
+    .filters-toggle {
+      font-size: 13px;
+    }
+    .mobile-filters-list a {
+      font-size: 14px;
+    }
+  }
+}
+/* ==========================================
+   BANNER ACCUEIL (hero-accueil)
+   ========================================== */
+
+$color-salmon: #e0998a;
+$color-cream: #f9f6f0;
+$color-text-dark: #222222;
+
+.hero-accueil {
+  // Hauteur de la section
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  // Positionnement vertical manuel (pousse le contenu vers le bas, mais plus haut que le centre absolu)
+  padding-top: 28vh;
+
+  // Carrousel des 5 catégories en fond de hero
+  .hero-accueil-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    .carousel-inner,
+    .carousel-item {
+      height: 100%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+    }
+  }
+
+  .hero-accueil-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%);
+  }
+
+  .hero-accueil-content-wrap {
+    z-index: 2;
+  }
+
+  // Indicateurs du carrousel (point + libellé de catégorie), cliquables. Volontairement
+  // hors de #hero-carousel (contrainte de mise en page — le carrousel est en position
+  // absolute plein cadre), donc la classe .active n'est pas gérée par Bootstrap lui-même
+  // (qui ne regarde que les indicateurs situés à l'intérieur de l'élément .carousel) :
+  // c'est fait à la main dans main.js via l'évènement 'slide.bs.carousel'.
+  .hero-accueil-indicators {
+    flex-wrap: wrap;
+    gap: 1.75rem;
+
+    button {
+      all: unset;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      opacity: 1;
+
+      &::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.45);
+        border: 2px solid transparent;
+        transition:
+          background-color 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      &:hover::before {
+        background-color: $color-primary;
+      }
+
+      &.active::before {
+        background-color: $color-primary;
+        border-color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    .hero-accueil-indicator-label {
+      font-family: 'montserrat-regular', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      color: $color-light;
+      text-transform: uppercase;
+    }
+  }
+
+  // Styles du titre
+  .hero-accueil-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: $color-light;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 2px;
+
+    .font-script {
+      font-family: 'Miama', cursive;
+      color: $color-primary;
+      font-size: 64px;
+      margin-left: 8px;
+      line-height: 1;
+    }
+  }
+
+  // Styles du sous-titre
+  .hero-accueil-subtitle {
+    font-family: 'montserrat-regular', sans-serif;
+    font-size: 1.1rem;
+    color: $color-light;
+    line-height: 1.6;
+    font-weight: 500;
+    max-width: 90%;
+  }
+
+  // Styles des boutons
+  .hero-accueil-buttons {
+    .btn {
+      border-radius: 0;
+      padding: 12px 28px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .btn-accueil-primary {
+      background-color: $color-primary;
+      color: $color-text-dark;
+
+      &:hover {
+        background-color: color.adjust($color-salmon, $lightness: -10%);
+        color: $color-text-dark;
+      }
+    }
+
+    .btn-accueil-secondary {
+      background-color: $color-cream;
+      color: $color-text-dark;
+
+      &:hover {
+        background-color: color.adjust($color-cream, $lightness: -10%);
+        color: $color-text-dark;
+      }
+    }
+  }
+}
+
+// Media Queries pour Desktop
+@media (min-width: 992px) {
+  .hero-accueil {
+    // Ajustement de la hauteur sur grand écran si nécessaire
+    padding-top: 32vh;
+
+    .hero-accueil-title {
+      font-size: 2.8rem;
+
+      .font-script {
+        font-size: 4.5rem;
+      }
+    }
+
+    .hero-accueil-subtitle {
+      font-size: 1.25rem;
+    }
+  }
+}

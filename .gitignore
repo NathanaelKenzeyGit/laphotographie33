@@ -1,0 +1,19 @@
+node_modules/
+
+# Variables d'environnement (clés API — ne jamais committer)
+.env
+.env.local
+.env.*.local
+.vercel
+
+# Sistema Operativo
+.DS_Store
+Thumbs.db
+
+# Editores y Entornos
+.vscode/
+.idea/
+
+# Sass Cache
+.sass-cache/
+*.css.map

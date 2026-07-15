@@ -1,0 +1,66 @@
+@font-face {
+  font-family: 'inter-medium';
+  src: url(/assets/fonts/Inter/Inter_18pt-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'inter-regular';
+  src: url(/assets/fonts/Inter/Inter_28pt-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'playfair-regular';
+  src: url(/assets/fonts/Playfair/PlayfairDisplay-Regular.ttf);
+}
+@font-face {
+  font-family: 'montserrat-medium';
+  src: url(/assets/fonts/Montserrat/Montserrat-Medium.ttf);
+}
+@font-face {
+  font-family: 'montserrat-regular';
+  src: url(/assets/fonts/Montserrat/Montserrat-Regular.ttf);
+}
+@font-face {
+  font-family: 'playfair-light';
+  src: url(/assets/fonts/Playfair/PlayfairDisplay-light.ttf);
+}
+
+@font-face {
+  font-family: 'Miama';
+  src: url('../assets/fonts/Miama/Miama.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('../assets/fonts/PlayfairDisplay-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../assets/fonts/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+$font-inter-medium: 'inter-medium', sans-serif;
+$font-inter-regular: 'inter-regular', sans-serif;
+$font-playfair: 'playfair-regular', serif;
+$font-playfair-light: 'playfair-light', serif;
+$font-miama: 'Miama', cursive;
+
+$color-dark: #1a1a1a;
+$color-light: #ffffff;
+$color-logo-bg: #e0e0e0;
+$color-glass-bg: rgba(0, 0, 0, 0.4);
+$color-glass-shadow: rgba(0, 0, 0, 0.5);
+$color-primary: #ea9981;
+$color-text-dark: #333333;
+
+// Espaciados globales
+$letter-spacing-global: 2px;
+$letter-spacing-logo: 0.5px;
