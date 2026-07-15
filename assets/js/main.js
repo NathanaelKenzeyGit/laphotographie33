@@ -107,17 +107,19 @@ if (!prefersReducedMotion) {
     scrollTrigger: { trigger: '.menu__grid', start: 'top 80%' },
   });
 
-  // Hero accueil : entrée au chargement (contenu déjà visible à l'écran)
-  gsap.from(
-    '.hero-accueil-title, .hero-accueil-subtitle, .hero-accueil-buttons, .hero-accueil-indicators',
-    {
-      duration: 0.9,
-      opacity: 0,
-      y: 30,
-      ease: 'power2.out',
-      stagger: 0.15,
-    }
-  );
+  // Hero accueil : entrée au chargement (contenu déjà visible à l'écran).
+  // Le <h1> est volontairement exclu : c'est l'élément LCP (Largest Contentful
+  // Paint) de la home, et un audit Lighthouse a montré qu'animer son opacity
+  // retarde son "paint stable" de plusieurs secondes en throttling (Chrome ne
+  // valide un LCP qu'une fois l'élément stabilisé) — un score LCP de 0.27/1 rien
+  // qu'à cause de ça. Le titre s'affiche donc immédiatement, sans fade.
+  gsap.from('.hero-accueil-subtitle, .hero-accueil-buttons, .hero-accueil-indicators', {
+    duration: 0.9,
+    opacity: 0,
+    y: 30,
+    ease: 'power2.out',
+    stagger: 0.15,
+  });
 
   // Bio photographe (accueil)
   gsap.from('.bio-photographe__img', {

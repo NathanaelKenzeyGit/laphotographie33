@@ -12,16 +12,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Juanrojasdc/Ex-js.git"
+    "url": "git+https://github.com/NathanaelKenzeyGit/laphotographie33.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/Juanrojasdc/Ex-js/issues"
+    "url": "https://github.com/NathanaelKenzeyGit/laphotographie33/issues"
   },
-  "homepage": "https://github.com/Juanrojasdc/Ex-js#readme",
+  "homepage": "https://github.com/NathanaelKenzeyGit/laphotographie33#readme",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "concurrently": "^10.0.3",

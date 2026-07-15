@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.aurelien-lambert-photographe.fr/sitemap.xml
+Sitemap: https://laphotographie33.vercel.app/sitemap.xml

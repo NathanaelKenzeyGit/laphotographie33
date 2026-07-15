@@ -17,3 +17,11 @@ Thumbs.db
 # Sass Cache
 .sass-cache/
 *.css.map
+
+# Docs de travail internes (mémoire technique, pistes d'amélioration, guide de
+# déploiement, changelog) — pas destinées à être publiques sur le repo GitHub.
+# README.md reste suivi : c'est lui que GitHub affiche sur la page du repo.
+CONTEXT.md
+AMELIORATIONS.md
+GUIDE-DEPLOIEMENT.md
+CHANGELOG.md

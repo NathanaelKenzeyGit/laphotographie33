@@ -2518,3 +2518,167 @@ $color-text-dark: #222222;
     }
   }
 }
+
+// ============================================================
+//  PAGE : MENTIONS LÉGALES / CONFIDENTIALITÉ
+//  <body class="page-mentions">
+// ============================================================
+
+.page-mentions {
+  .mentions-hero {
+    background-color: $color-cream;
+    padding-top: 140px;
+    padding-bottom: 40px;
+    min-height: 30vh;
+
+    &__title {
+      font-family: $font-playfair;
+      font-size: 2.5rem;
+      color: $color-dark;
+
+      @media (max-width: 768px) {
+        font-size: 1.75rem;
+      }
+    }
+  }
+
+  .mentions-content {
+    max-width: 760px;
+    margin: 0 auto;
+    font-family: $font-inter;
+    color: $color-text-dark;
+    line-height: 1.7;
+  }
+
+  .mentions-section {
+    margin-bottom: 2.5rem;
+
+    h2 {
+      font-family: $font-playfair;
+      font-size: 1.75rem;
+      margin-bottom: 1.25rem;
+      color: $color-dark;
+    }
+
+    h3 {
+      font-family: 'montserrat-medium', sans-serif;
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: $color-dark;
+    }
+
+    p,
+    li {
+      font-size: 0.95rem;
+    }
+
+    a {
+      color: $color-primary;
+    }
+
+    code {
+      background-color: rgba(0, 0, 0, 0.06);
+      padding: 0.1em 0.4em;
+      border-radius: 4px;
+      font-size: 0.85em;
+      color: #b02a37;
+    }
+  }
+}
+
+// ============================================================
+//  BANDEAU DE CONSENTEMENT COOKIES
+//  Présent sur toutes les pages (assets/js/cookie-consent.js)
+// ============================================================
+
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1080;
+  background-color: $color-dark;
+  color: $color-light;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  &__text {
+    font-family: $font-inter;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    max-width: 640px;
+    margin: 0;
+
+    a {
+      color: $color-primary;
+      text-decoration: underline;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  &__btn {
+    border-radius: 0;
+    padding: 8px 18px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid $color-light;
+    background-color: transparent;
+    color: $color-light;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      background-color: $color-light;
+      color: $color-dark;
+    }
+
+    &--accept {
+      background-color: $color-primary;
+      border-color: $color-primary;
+      color: $color-dark;
+
+      &:hover {
+        background-color: color.adjust($color-primary, $lightness: -10%);
+      }
+    }
+  }
+}
+
+.avis-fallback {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: $font-inter;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 2rem 1rem;
+
+  button {
+    display: inline-block;
+    margin-top: 0.75rem;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: $color-light;
+    padding: 6px 16px;
+    cursor: pointer;
+    border-radius: 0;
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+  }
+}
