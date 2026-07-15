@@ -28,83 +28,117 @@ $letter-spacing-logo: 3px;
 //  @FONT-FACE (déclarés une seule fois)
 // ============================================================
 
+// Chaque src liste le .woff2 en premier (jusqu'à 66% plus léger, cf. rapport
+// Lighthouse network-dependency-tree-insight) avec l'ancien fichier en repli pour les
+// très rares navigateurs sans support woff2 — le navigateur ignore le second format
+// dès que le premier est utilisable, donc zéro coût pour les navigateurs modernes.
 @font-face {
   font-family: 'inter-medium';
-  src: url(/assets/fonts/Inter/Inter_18pt-Medium.ttf) format('truetype');
+  src:
+    url(/assets/fonts/Inter/Inter_18pt-Medium.woff2) format('woff2'),
+    url(/assets/fonts/Inter/Inter_18pt-Medium.ttf) format('truetype');
   font-display: swap;
 }
 @font-face {
   font-family: 'inter-regular';
-  src: url(/assets/fonts/Inter/Inter_28pt-Regular.ttf) format('truetype');
+  src:
+    url(/assets/fonts/Inter/Inter_28pt-Regular.woff2) format('woff2'),
+    url(/assets/fonts/Inter/Inter_28pt-Regular.ttf) format('truetype');
   font-display: swap;
 }
 @font-face {
   font-family: 'inter-extra-light';
-  src: url(/assets/fonts/Inter/Inter_18pt-ExtraLight.ttf) format('truetype');
+  src:
+    url(/assets/fonts/Inter/Inter_18pt-ExtraLight.woff2) format('woff2'),
+    url(/assets/fonts/Inter/Inter_18pt-ExtraLight.ttf) format('truetype');
   font-display: swap;
 }
 @font-face {
   font-family: 'playfair-regular';
-  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
+  src:
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff2) format('woff2'),
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
   font-display: swap;
 }
 @font-face {
   font-family: 'playfair-light';
-  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
+  src:
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff2) format('woff2'),
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
   font-display: swap;
 }
 @font-face {
   font-family: 'playfair-display';
-  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
+  src:
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff2) format('woff2'),
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
   font-display: swap;
 }
 @font-face {
   font-family: 'playfair-display-bold';
-  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Bold.woff) format('woff');
+  src:
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Bold.woff2) format('woff2'),
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Bold.woff) format('woff');
   font-display: swap;
 }
 @font-face {
   font-family: 'playfair-display-italic';
-  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Italic.woff) format('woff');
+  src:
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Italic.woff2) format('woff2'),
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Italic.woff) format('woff');
   font-display: swap;
 }
 @font-face {
   font-family: 'montserrat-medium';
-  src: url(/assets/fonts/Montserrat/Montserrat-Medium.woff) format('woff');
+  src:
+    url(/assets/fonts/Montserrat/Montserrat-Medium.woff2) format('woff2'),
+    url(/assets/fonts/Montserrat/Montserrat-Medium.woff) format('woff');
   font-display: swap;
 }
 @font-face {
   font-family: 'montserrat-regular';
-  src: url(/assets/fonts/Montserrat/Montserrat-Regular.woff) format('woff');
+  src:
+    url(/assets/fonts/Montserrat/Montserrat-Regular.woff2) format('woff2'),
+    url(/assets/fonts/Montserrat/Montserrat-Regular.woff) format('woff');
   font-display: swap;
 }
 @font-face {
   font-family: 'montserrat-light';
-  src: url(/assets/fonts/Montserrat/Montserrat-Light.woff) format('woff');
+  src:
+    url(/assets/fonts/Montserrat/Montserrat-Light.woff2) format('woff2'),
+    url(/assets/fonts/Montserrat/Montserrat-Light.woff) format('woff');
   font-display: swap;
 }
 @font-face {
   font-family: 'montserrat';
-  src: url(/assets/fonts/Montserrat/Montserrat-Regular.woff) format('woff');
+  src:
+    url(/assets/fonts/Montserrat/Montserrat-Regular.woff2) format('woff2'),
+    url(/assets/fonts/Montserrat/Montserrat-Regular.woff) format('woff');
   font-display: swap;
 }
 @font-face {
   font-family: 'Miama';
-  src: url(/assets/fonts/Miama/Miama.otf) format('opentype');
+  src:
+    url(/assets/fonts/Miama/Miama.woff2) format('woff2'),
+    url(/assets/fonts/Miama/Miama.otf) format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Playfair Display';
-  src: url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
+  src:
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff2) format('woff2'),
+    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Montserrat';
-  src: url(/assets/fonts/Montserrat/Montserrat-Medium.woff) format('woff');
+  src:
+    url(/assets/fonts/Montserrat/Montserrat-Medium.woff2) format('woff2'),
+    url(/assets/fonts/Montserrat/Montserrat-Medium.woff) format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
