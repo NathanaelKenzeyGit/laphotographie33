@@ -18,7 +18,11 @@ $color-light: #ffffff;
 $color-glass-bg: rgba(255, 255, 255, 0.15);
 $color-glass-shadow: rgba(0, 0, 0, 0.1);
 
-$font-playfair: 'playfair-regular', Georgia, serif;
+// Un seul nom canonique par poids de police réel. 'Playfair Display' et 'Montserrat'
+// remplacent d'anciens noms redondants ('playfair-regular'/'playfair-display'/
+// 'playfair-light', 'montserrat-regular') qui pointaient tous vers exactement les
+// mêmes fichiers — fusionnés ici pour ne garder qu'un nom par poids (2026-07-16).
+$font-playfair: 'Playfair Display', Georgia, serif;
 $font-montserrat: 'montserrat-regular', Arial, sans-serif;
 $font-inter: 'inter-regular', Arial, sans-serif;
 
@@ -51,27 +55,6 @@ $letter-spacing-logo: 3px;
   src:
     url(/assets/fonts/Inter/Inter_18pt-ExtraLight.woff2) format('woff2'),
     url(/assets/fonts/Inter/Inter_18pt-ExtraLight.ttf) format('truetype');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'playfair-regular';
-  src:
-    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff2) format('woff2'),
-    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'playfair-light';
-  src:
-    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff2) format('woff2'),
-    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
-  font-display: swap;
-}
-@font-face {
-  font-family: 'playfair-display';
-  src:
-    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff2) format('woff2'),
-    url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
   font-display: swap;
 }
 @font-face {
@@ -110,13 +93,6 @@ $letter-spacing-logo: 3px;
   font-display: swap;
 }
 @font-face {
-  font-family: 'montserrat';
-  src:
-    url(/assets/fonts/Montserrat/Montserrat-Regular.woff2) format('woff2'),
-    url(/assets/fonts/Montserrat/Montserrat-Regular.woff) format('woff');
-  font-display: swap;
-}
-@font-face {
   font-family: 'Miama';
   src:
     url(/assets/fonts/Miama/Miama.woff2) format('woff2'),
@@ -126,20 +102,15 @@ $letter-spacing-logo: 3px;
   font-display: swap;
 }
 @font-face {
+  // Poids retiré volontairement (le fichier est la graisse "Regular" = 400, la
+  // valeur 500 précédente créait un piège : tout texte à la graisse par défaut
+  // utilisant cette famille sans préciser de poids ne trouvait plus de face
+  // correspondante et retombait sur Georgia — même classe de bug que celui déjà
+  // rencontré et corrigé sur "LAMBERT" en page À propos.)
   font-family: 'Playfair Display';
   src:
     url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff2) format('woff2'),
     url(/assets/fonts/Playfair-Display/PlayfairDisplay-Regular.woff) format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Montserrat';
-  src:
-    url(/assets/fonts/Montserrat/Montserrat-Medium.woff2) format('woff2'),
-    url(/assets/fonts/Montserrat/Montserrat-Medium.woff) format('woff');
-  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
@@ -374,7 +345,7 @@ $letter-spacing-logo: 3px;
 }
 
 .mariage-h2 {
-  font-family: 'playfair-display', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
 .mariage-h3 {
@@ -680,7 +651,7 @@ $letter-spacing-logo: 3px;
     .illustration-contact__description {
       max-width: 650px;
       color: #6b6258;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'montserrat-regular', sans-serif;
       font-size: 17px;
       line-height: 20px;
       letter-spacing: 0.1em;
@@ -967,7 +938,7 @@ $letter-spacing-logo: 3px;
 
 .page-contact {
   * {
-    font-family: 'playfair-display', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
   .contact-banner-mobile {
@@ -1402,7 +1373,7 @@ $letter-spacing-logo: 3px;
 
       .step-subtitle {
         display: block;
-        font-family: 'playfair-light', serif;
+        font-family: 'Playfair Display', serif;
         font-style: italic;
         color: $color-light;
         margin-bottom: 12px;
@@ -1711,7 +1682,7 @@ $letter-spacing-logo: 3px;
 
 .page-galerie {
   * {
-    font-family: 'playfair-display', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 }
 
@@ -1723,7 +1694,7 @@ $letter-spacing-logo: 3px;
 
 .page-section-prestations {
   .section-presta__title {
-    font-family: 'playfair-display', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
 
     .section-presta__title-bold {
       font-family: 'playfair-display-bold', Georgia, serif;
@@ -1731,7 +1702,7 @@ $letter-spacing-logo: 3px;
   }
 
   .section-presta__btn {
-    font-family: 'playfair-display', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
   .section-presta__price {
@@ -1871,7 +1842,7 @@ $letter-spacing-logo: 3px;
       width: 571px;
       margin: 0;
       color: $color-light;
-      font-family: 'Montserrat', Arial, sans-serif;
+      font-family: 'montserrat-medium', Arial, sans-serif;
       font-size: 24px;
       font-weight: 500;
       line-height: 1.25;
@@ -2063,7 +2034,7 @@ $letter-spacing-logo: 3px;
 
   .article-date {
     display: block;
-    font-family: 'Inter', Arial, sans-serif;
+    font-family: 'inter-medium', Arial, sans-serif;
     font-size: 10px;
     font-weight: 600;
     line-height: 1;
@@ -2226,7 +2197,7 @@ $letter-spacing-logo: 3px;
     }
 
     &__date {
-      font-family: 'Inter', Arial, sans-serif;
+      font-family: 'inter-medium', Arial, sans-serif;
       font-size: 10px;
       font-weight: 600;
       color: rgba(0, 0, 0, 0.6);
