@@ -1,5 +1,5 @@
 // Bandeau de consentement cookies minimal : ne gère qu'un seul cookie tiers
-// non-essentiel (le widget Elfsight des avis Google, présent uniquement sur la home).
+// non-essentiel (le widget Elfsight des avis Google, présent sur la home et la page contact).
 // Rien n'est chargé tant que l'utilisateur n'a pas explicitement accepté.
 
 const COOKIE_CONSENT_KEY = 'cookie-consent';
