@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prestations &amp; Tarifs - Aurélien Lambert Photographe</title>
+    <meta
+      name="description"
+      content="Découvrez les prestations photo d'Aurélien Lambert en Gironde : mariage, portrait, maternité, animalier, corporate. Formules et tarifs."
+    />
+    <link rel="canonical" href="https://laphotographie33.vercel.app/pages/prestations.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Prestations &amp; Tarifs - Aurélien Lambert Photographe" />
+    <meta
+      property="og:description"
+      content="Mariage, portrait, maternité, animalier, corporate : formules et tarifs des séances photo en Gironde."
+    />
+    <meta
+      property="og:image"
+      content="https://laphotographie33.vercel.app/assets/img/aurelien-2.webp"
+    />
+    <meta property="og:url" content="https://laphotographie33.vercel.app/pages/prestations.html" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/Fichier%208PPPP.svg" />
+    <link rel="stylesheet" href="/assets/css/main.min.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://laphotographie33.vercel.app/#business",
+        "name": "Aurélien Lambert Photographe",
+        "image": "https://laphotographie33.vercel.app/assets/img/aurelien.webp",
+        "url": "https://laphotographie33.vercel.app/",
+        "telephone": "+33651512771",
+        "email": "laphotographie33@gmail.com",
+        "priceRange": "€€",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Saint-André-de-Cubzac",
+          "addressRegion": "Gironde",
+          "addressCountry": "FR"
+        },
+        "areaServed": { "@type": "AdministrativeArea", "name": "Gironde" },
+        "sameAs": ["https://www.instagram.com/aurelien_lambert/"],
+        "founder": { "@type": "Person", "name": "Aurélien Lambert" }
+      }
+    </script>
+  </head>
+  <body class="page-prestations">
+    <header id="main-navbar"></header>
+    <header class="hero-prestations d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-8 col-lg-6 hero-text-box">
+            <h1 class="hero-title">
+              Chaque <span class="text-script">Image</span><br />
+              <span class="title-indent"
+                >raconte une <span class="text-script">Histoire</span></span
+              >
+            </h1>
+            <p class="hero-subtitle mt-3">
+              Des regards des émotions, des souvenirs qui traversent le temps.
+            </p>
+            <button class="button">Explorer les galeries</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="prestations-intro text-light bg-black">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <h2 class="main-text-section__titre mb-4 text-center">
+              Des prestations adaptées à chaque histoire
+            </h2>
+            <p class="main-text-section__content text-start">
+              Chaque séance est unique. Mon approche allie discrétion, sensibilité et exigence afin
+              de capturer des images naturelles qui reflètent votre personnalité et les émotions du
+              moment. Découvrez les univers que je vous propose.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="galerie-filtree bg-black text-light py-5" id="galerie-filtree">
+      <div class="container-fluid px-4 px-md-5">
+        <nav
+          class="galerie-filters d-flex flex-wrap justify-content-center gap-3 mb-5"
+          aria-label="Filtrer la galerie par thématique"
+        >
+          <button type="button" class="galerie-filter-btn active" data-filter="all">Tous</button>
+          <button type="button" class="galerie-filter-btn" data-filter="mariage">Mariage</button>
+          <button type="button" class="galerie-filter-btn" data-filter="portrait">Portraits</button>
+          <button type="button" class="galerie-filter-btn" data-filter="maternite">
+            Maternité
+          </button>
+          <button type="button" class="galerie-filter-btn" data-filter="canin">Canin</button>
+          <button type="button" class="galerie-filter-btn" data-filter="equestre">Équestre</button>
+          <button type="button" class="galerie-filter-btn" data-filter="corporate">
+            Corporate
+          </button>
+          <button type="button" class="galerie-filter-btn" data-filter="sportif">Sportif</button>
+        </nav>
+
+        <div class="row g-3 galerie-filter-grid">
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="mariage">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/mariage/mariage-1.webp"
+                alt="Couple de mariés s'embrassant devant la façade classique de la mairie de Bordeaux"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="mariage">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/mariage/mariage-2.webp"
+                alt="Mariés enlacés devant le Miroir d'eau de Bordeaux, la brume au sol et le soleil en contre-jour"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="mariage">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/mariage/mariage-3.webp"
+                alt="Cinq garçons d'honneur en costume bleu marine et nœud papillon assis sur un canapé en cuir"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="mariage">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/mariage/mariage-4.webp"
+                alt="Détail flou d'une décoration de table de mariage avec lumières dorées en arrière-plan"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="mariage">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/mariage/mariage-5.webp"
+                alt="Mariés s'embrassant au crépuscule devant la Garonne à Bordeaux, reflets de lumières sur l'eau"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="mariage">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/mariage/mariage-6.webp"
+                alt="Mariée vue à travers la vitre d'une voiture, tenant un bouquet de roses blanches et roses"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="mariage">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/mariage/mariage-12.webp"
+                alt="Gros plan en noir et blanc de deux mains lors de l'échange des alliances durant une cérémonie de mariage"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="mariage">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/mariage/mariage-13.webp"
+                alt="Mariés s'embrassant assis sur le rebord d'une fontaine en pierre dans un village provençal en pierre"
+                loading="lazy"
+              />
+            </button>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="portrait">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/portrait/portrait-1.webp"
+                alt="Mère et enfant de dos descendant une dune de sable vers l'océan, robe longue à fleurs bleues au vent"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="portrait">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/portrait/portrait-2.webp"
+                alt="Famille de trois personnes de dos face à l'océan au coucher du soleil, père tenant son enfant dans les bras"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="portrait">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/portrait/portrait-4.webp"
+                alt="Silhouette d'une famille assise sur une dune au coucher du soleil, ciel nuageux et lumière dorée"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="portrait">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/portrait/portrait-7.webp"
+                alt="Portrait d'une femme aux cheveux longs au vent, éclairée par la lumière dorée du coucher de soleil en bord de mer"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="portrait">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/portrait/portait-6.webp"
+                alt="Mère souriant joue contre joue avec son jeune enfant hilare, en extérieur dans un jardin"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="portrait">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/portrait/sensualite-1.webp"
+                alt="Portrait en noir et blanc d'un homme torse nu de profil, fond sombre"
+                loading="lazy"
+              />
+            </button>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="maternite">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/maternite/bebe-1.webp"
+                alt="Nouveau-né éveillé allongé sur une couverture en laine blanche, bouche entrouverte, regard vers le haut"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="maternite">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/maternite/bebe-2.webp"
+                alt="Papa déposant un baiser sur le front de son nouveau-né endormi sur un fond de plumes colorées"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="maternite">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/maternite/bebe-4.webp"
+                alt="Petite main de nouveau-né agrippant un doigt d'adulte, photo en noir et blanc"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="maternite">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/maternite/bebe-6.webp"
+                alt="Nouveau-né endormi habillé en blanc, tenu délicatement dans des mains adultes, photo en noir et blanc"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="maternite">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/maternite/maternite-1.webp"
+                alt="Femme enceinte de profil au bord d'un lac au coucher du soleil, regardant son ventre"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="maternite">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/maternite/maternite-4.webp"
+                alt="Ventre de femme enceinte encadré par ses mains, avec un collier pendentif cœur, fond sombre"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="maternite">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/maternite/maternite-10.webp"
+                alt="Femme enceinte de profil dans une forêt de fougères verdoyantes, éclairée par la lumière naturelle"
+                loading="lazy"
+              />
+            </button>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="canin">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/animalier/canin-3.webp"
+                alt="Chiot Rottweiler couché dans l'herbe devant des rosiers en fleurs roses"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="canin">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/animalier/canin-5.webp"
+                alt="Femme souriante tenant dans ses bras un bouvier bernois, assise en extérieur"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="canin">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/animalier/canin-6.webp"
+                alt="Chien de type Akita au premier plan, langue tirée, avec une femme souriante en arrière-plan"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="canin">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/animalier/canin-15.webp"
+                alt="Chiot à poil long et clair courant dans l'herbe en plein air"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="canin">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/animalier/canin-16.webp"
+                alt="Portrait d'un chien de type Colley doré assis, éclairé en contre-jour avec un bokeh lumineux en arrière-plan"
+                loading="lazy"
+              />
+            </button>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="equestre">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/animalier/equin-1.webp"
+                alt="Cavalière à cheval en silhouette dans un manège en sable, éclairée par un coucher de soleil doré derrière les pins"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="equestre">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/animalier/equin-2.webp"
+                alt="Cavalière à cheval en silhouette contre un coucher de soleil à travers les arbres"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="equestre">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/animalier/equin-5.webp"
+                alt="Portrait d'une jeune femme souriante, joue contre le museau d'un cheval"
+                loading="lazy"
+              />
+            </button>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="corporate">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/corporate/corporate-5.webp"
+                alt="Mains versant une boisson dans un verre en plastique transparent avec un logo 'Grow Up Center'"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="corporate">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/corporate/corporate-7.webp"
+                alt="Groupe de sept personnes souriantes assises devant un mur végétal, tenant des boissons lors d'un événement"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="corporate">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/corporate/corporate-11.webp"
+                alt="Femme souriante parlant au téléphone tout en travaillant sur un ordinateur portable, photo en noir et blanc"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="corporate">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/corporate/corporate-12.webp"
+                alt="Mains tenant un smartphone affichant une publicité Instagram pour 'Ligne Divine', une gamme de soins féminins"
+                loading="lazy"
+              />
+            </button>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="sportif">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/corporate/sport-6.webp"
+                alt="Groupe de coureurs portant des maillots 'Michelin Bassens' de dos, rassemblés avant le départ du Semi-Marathon de Bordeaux"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="sportif">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/corporate/sport-7.webp"
+                alt="Joueur de basket en maillot jaune sautant pour un tir face à un défenseur en maillot noir lors d'un match en salle"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3 galerie-filter-item" data-category="sportif">
+            <button
+              type="button"
+              class="galerie-filter-btn-img"
+              data-bs-toggle="modal"
+              data-bs-target="#lightbox-modal"
+            >
+              <img
+                src="/assets/img/corporate/sport-8.webp"
+                alt="Joueuse de basket en maillot jaune et blanc effectuant un tir en suspension lors d'un match en salle"
+                loading="lazy"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div
+      class="modal fade"
+      id="lightbox-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+      aria-label="Aperçu de la photo"
+    >
+      <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+        <div class="modal-content bg-black">
+          <div class="modal-header border-0 position-absolute top-0 end-0 z-3 p-3">
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Fermer"
+            ></button>
+          </div>
+          <div class="modal-body d-flex align-items-center justify-content-center p-0">
+            <img
+              id="lightbox-modal-img"
+              src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              alt=""
+              class="img-fluid"
+              style="max-height: 100vh; object-fit: contain"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer id="main-footer"></footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/cookie-consent.js"></script>
+    <script src="/assets/js/lightbox.js"></script>
+    <script src="/assets/js/gallery-filter.js"></script>
+  </body>
+</html>
