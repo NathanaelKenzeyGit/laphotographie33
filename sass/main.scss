@@ -571,7 +571,9 @@ $letter-spacing-logo: 3px;
   min-height: 60vh;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 60px 0;
+  // Padding haut renforcé : la navbar est fixe (~96px), sans lui le h1
+  // passait dessous sur prestations et galerie
+  padding: 130px 0 60px;
   overflow: hidden;
 
   .container,
@@ -582,7 +584,7 @@ $letter-spacing-logo: 3px;
 
   @media (max-width: 768px) {
     min-height: 45vh;
-    padding: 40px 0;
+    padding: 110px 0 40px;
   }
 
   .hero-title {
@@ -760,8 +762,10 @@ $letter-spacing-logo: 3px;
     backdrop-filter 0.4s ease; // Transición suave
 
   // Fondo inicial transparente
-  background-color: $color-glass-bg;
-
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 30px $color-glass-shadow;
   &.scrolled {
     background-color: $color-glass-bg !important;
     backdrop-filter: blur(12px);
@@ -830,7 +834,7 @@ $letter-spacing-logo: 3px;
     color: $color-dark;
 
     &:hover {
-      color: $color-light;
+      color: $color-primary;
       opacity: 1;
     }
   }
@@ -840,15 +844,16 @@ $letter-spacing-logo: 3px;
   }
 
   .btn-cta--navbar {
-    background-color: transparent;
+    background-color: $color-primary;
     color: $color-dark;
-    border: 1px solid $color-dark;
+    border: 1px solid $color-primary;
     font-family: $font-playfair;
     font-size: 20px;
 
     &:hover {
-      background-color: $color-dark;
-      color: $color-light;
+      background-color: color.adjust(#ea9981, $lightness: -10%);
+      border-color: color.adjust(#ea9981, $lightness: -10%);
+      color: $color-dark;
     }
   }
 }
@@ -859,7 +864,7 @@ $letter-spacing-logo: 3px;
     color: $color-light;
 
     &:hover {
-      color: $color-dark;
+      color: $color-primary;
       opacity: 1;
     }
   }
@@ -869,14 +874,15 @@ $letter-spacing-logo: 3px;
   }
 
   .btn-cta--navbar {
-    background-color: transparent;
-    color: $color-light;
-    border: 1px solid $color-light;
+    background-color: $color-primary;
+    color: $color-dark;
+    border: 1px solid $color-primary;
     font-family: $font-playfair;
     font-size: 20px;
 
     &:hover {
-      background-color: $color-light;
+      background-color: color.adjust(#ea9981, $lightness: -10%);
+      border-color: color.adjust(#ea9981, $lightness: -10%);
       color: $color-dark;
     }
   }
