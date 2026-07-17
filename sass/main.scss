@@ -1735,18 +1735,16 @@ $letter-spacing-logo: 3px;
     font-size: clamp(0.75rem, 1.5vw, 1.25rem);
   }
 
-  // Même léger zoom au survol que la mosaïque de la galerie, pour signaler
-  // que les cartes sont cliquables
+  // Léger zoom au survol de la carte entière (image + bandeau titre/prix),
+  // pour signaler que les cartes sont cliquables. Le transform est sur .card :
+  // l'entrée GSAP anime la colonne parente pour ne pas entrer en conflit.
   .card {
     overflow: hidden;
+    transition: transform 0.3s ease;
 
-    .menu__card {
-      transition: transform 0.3s ease;
-    }
-
-    &:hover .menu__card,
-    &:focus-visible .menu__card {
-      transform: scale(1.05);
+    &:hover,
+    &:focus-visible {
+      transform: scale(1.03);
     }
   }
 
@@ -2418,7 +2416,6 @@ $color-text-dark: #222222;
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%);
   }
 
   .hero-accueil-content-wrap {

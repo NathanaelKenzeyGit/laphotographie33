@@ -97,10 +97,11 @@ function animateCounters(selector, { formatDot = false } = {}) {
 }
 
 if (!prefersReducedMotion) {
-  // Cartes "Prestations" (accueil) — on anime la carte parente, pas l'image :
-  // l'image porte une transition CSS (zoom au survol) qui entrerait en conflit
-  // avec le transform inline posé par GSAP sur le même élément
-  gsap.from('.menu__grid .card', {
+  // Cartes "Prestations" (accueil) — on anime les colonnes parentes (en excluant
+  // la première, qui contient le titre de section) : la carte porte une transition
+  // CSS (zoom au survol) qui entrerait en conflit avec le transform inline posé
+  // par GSAP sur le même élément
+  gsap.from('.menu__grid > div:not(:first-child)', {
     duration: 1,
     opacity: 0,
     y: 60,
