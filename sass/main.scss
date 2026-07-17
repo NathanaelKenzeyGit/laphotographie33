@@ -2375,13 +2375,16 @@ $color-cream: #f9f6f0;
 $color-text-dark: #222222;
 
 .hero-accueil {
-  // Hauteur de la section
-  min-height: 100vh;
+  // Hauteur exacte du viewport : tout le hero est visible sans scroller,
+  // quel que soit l'écran. svh évite le débordement dû à la barre d'URL mobile.
+  height: 100vh;
+  height: 100svh;
   position: relative;
   overflow: hidden;
 
-  // Positionnement vertical manuel (pousse le contenu vers le bas, mais plus haut que le centre absolu)
-  padding-top: 28vh;
+  // Centrage vertical du contenu (remplace l'ancien padding-top en vh, qui
+  // faisait dépasser la section sous la ligne de flottaison sur petits écrans)
+  align-items: center;
 
   // Carrousel des 5 catégories en fond de hero
   .hero-accueil-carousel {
@@ -2528,9 +2531,6 @@ $color-text-dark: #222222;
 // Media Queries pour Desktop
 @media (min-width: 992px) {
   .hero-accueil {
-    // Ajustement de la hauteur sur grand écran si nécessaire
-    padding-top: 32vh;
-
     .hero-accueil-title {
       font-size: 2.8rem;
 

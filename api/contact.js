@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Adresse qui reçoit les demandes de contact — le studio du photographe.
-const TO_EMAIL = 'nathanael.kenzey@gmail.com';
+const TO_EMAIL = 'laphotographie33@gmail.com';
 
 // Tant qu'aucun domaine n'est vérifié sur le compte Resend, l'envoi doit passer par
 // cette adresse de test fournie par Resend (fonctionne sans configuration DNS, mais
