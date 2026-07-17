@@ -760,7 +760,7 @@ $letter-spacing-logo: 3px;
     backdrop-filter 0.4s ease; // Transición suave
 
   // Fondo inicial transparente
-  background-color: transparent;
+  background-color: $color-glass-bg;
 
   &.scrolled {
     background-color: $color-glass-bg !important;
@@ -2425,7 +2425,6 @@ $color-text-dark: #222222;
     justify-content: center;
     padding-bottom: 1.5rem;
   }
-
 
   // Indicateurs du carrousel (point + libellé de catégorie), cliquables. Volontairement
   // hors de #hero-carousel (contrainte de mise en page — le carrousel est en position
