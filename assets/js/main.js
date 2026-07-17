@@ -97,8 +97,10 @@ function animateCounters(selector, { formatDot = false } = {}) {
 }
 
 if (!prefersReducedMotion) {
-  // Cartes "Prestations" (accueil)
-  gsap.from('.menu__card', {
+  // Cartes "Prestations" (accueil) — on anime la carte parente, pas l'image :
+  // l'image porte une transition CSS (zoom au survol) qui entrerait en conflit
+  // avec le transform inline posé par GSAP sur le même élément
+  gsap.from('.menu__grid .card', {
     duration: 1,
     opacity: 0,
     y: 60,
