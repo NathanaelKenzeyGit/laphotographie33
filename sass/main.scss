@@ -2389,9 +2389,9 @@ $color-text-dark: #222222;
   position: relative;
   overflow: hidden;
 
-  // Centrage vertical du contenu (remplace l'ancien padding-top en vh, qui
-  // faisait dépasser la section sous la ligne de flottaison sur petits écrans)
-  align-items: center;
+  // Le padding-top réserve la hauteur de la navbar fixe pour que le contenu
+  // ne remonte pas dessous sur les écrans peu hauts.
+  padding-top: 96px;
 
   // Carrousel des 5 catégories en fond de hero
   .hero-accueil-carousel {
@@ -2418,9 +2418,17 @@ $color-text-dark: #222222;
     z-index: 1;
   }
 
+  // Colonne pleine hauteur : tout le bloc (titre/sous-titre/boutons + indicateurs
+  // du carrousel juste en dessous) est centré verticalement d'un seul tenant dans
+  // l'espace sous la navbar.
   .hero-accueil-content-wrap {
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 1.5rem;
   }
+
 
   // Indicateurs du carrousel (point + libellé de catégorie), cliquables. Volontairement
   // hors de #hero-carousel (contrainte de mise en page — le carrousel est en position
@@ -2466,7 +2474,7 @@ $color-text-dark: #222222;
       font-family: 'montserrat-regular', sans-serif;
       font-size: 0.75rem;
       letter-spacing: 0.5px;
-      color: $color-light;
+      color: $color-dark;
       text-transform: uppercase;
     }
   }
@@ -2475,7 +2483,7 @@ $color-text-dark: #222222;
   .hero-accueil-title {
     font-family: 'Playfair Display', serif;
     font-size: 40px;
-    color: $color-light;
+    color: $color-dark;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 2px;
@@ -2484,7 +2492,7 @@ $color-text-dark: #222222;
   .hero-accueil-subtitle {
     font-family: 'montserrat-regular', sans-serif;
     font-size: 1.1rem;
-    color: $color-light;
+    color: $color-dark;
     line-height: 1.6;
     font-weight: 500;
     max-width: 90%;
@@ -2534,6 +2542,29 @@ $color-text-dark: #222222;
 
     .hero-accueil-subtitle {
       font-size: 1.25rem;
+    }
+  }
+}
+
+// Écrans peu hauts (petits laptops, bandeau cookie affiché…) : on resserre les
+// espacements verticaux et le titre pour que les labels du carrousel restent
+// toujours visibles dans le hero à 100svh. Placé APRÈS la media query desktop
+// ci-dessus pour gagner la cascade sur la taille du titre. !important nécessaire
+// pour surclasser les utilitaires Bootstrap mt-4/mt-5 (eux-mêmes en !important).
+@media (max-height: 760px) {
+  .hero-accueil {
+    .hero-accueil-subtitle,
+    .hero-accueil-buttons,
+    .hero-accueil-indicators {
+      margin-top: 1.25rem !important;
+    }
+
+    .hero-accueil-content-wrap {
+      padding-bottom: 3rem;
+    }
+
+    .hero-accueil-title {
+      font-size: 2.2rem;
     }
   }
 }
