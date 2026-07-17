@@ -594,14 +594,11 @@ $letter-spacing-logo: 3px;
     text-transform: uppercase;
     letter-spacing: 2px;
 
+    // Plus de retrait sur la 2e ligne : le titre commence à gauche sur
+    // toutes ses lignes, comme le h1 du hero de l'accueil
     .title-indent {
       display: inline-block;
-      margin-left: 20px;
       white-space: nowrap;
-
-      @media (min-width: 768px) {
-        margin-left: 60px;
-      }
     }
   }
 
