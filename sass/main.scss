@@ -120,6 +120,23 @@ $letter-spacing-logo: 3px;
 //  (utilisés sur plusieurs pages, pas de scope nécessaire)
 // ============================================================
 
+// --- MOT MANUSCRIT ACCENTUÉ (.font-script) ---
+// Utilisé sur : accueil (hero + section citation), à propos, galerie…
+// Taille en em pour s'adapter au titre parent quelle que soit la page
+// (1.6em = le ratio historique 64px/40px du hero de la home).
+
+.font-script {
+  font-family: 'Miama', cursive;
+  color: $color-primary;
+  font-size: 1.6em;
+  margin-left: 8px;
+  line-height: 1;
+  // Neutralise l'uppercase et le letter-spacing des titres parents
+  // (ex. .hero-title de prestations) : le script doit rester en minuscules
+  text-transform: none;
+  letter-spacing: normal;
+}
+
 // --- BENTO GRID ---
 // Utilisé sur : animalier, mariage, portraits, galerie
 // Note : les hauteurs peuvent légèrement varier par page ;
@@ -576,14 +593,6 @@ $letter-spacing-logo: 3px;
     color: $color-text-dark;
     text-transform: uppercase;
     letter-spacing: 2px;
-
-    .text-script {
-      font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
-      color: $color-primary;
-      text-transform: none;
-      font-size: 1.3em;
-      letter-spacing: 0;
-    }
 
     .title-indent {
       display: inline-block;
@@ -2473,16 +2482,7 @@ $color-text-dark: #222222;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 2px;
-
-    .font-script {
-      font-family: 'Miama', cursive;
-      color: $color-primary;
-      font-size: 64px;
-      margin-left: 8px;
-      line-height: 1;
-    }
   }
-
   // Styles du sous-titre
   .hero-accueil-subtitle {
     font-family: 'montserrat-regular', sans-serif;
@@ -2533,10 +2533,6 @@ $color-text-dark: #222222;
   .hero-accueil {
     .hero-accueil-title {
       font-size: 2.8rem;
-
-      .font-script {
-        font-size: 4.5rem;
-      }
     }
 
     .hero-accueil-subtitle {
