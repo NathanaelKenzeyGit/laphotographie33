@@ -73,7 +73,6 @@ assets/
 sass/
   main.scss                Fichier source unique (~2600 lignes, sections scopées
                             par commentaires `// PAGE : XXX` et classes `.page-xxx`)
-  variables.scss            Orphelin, non utilisé par main.scss — ignorer
 api/
   contact.js                Fonction serverless Vercel : envoie l'email via Resend
 robots.txt, sitemap.xml    SEO

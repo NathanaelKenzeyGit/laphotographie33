@@ -23,8 +23,29 @@ $color-glass-shadow: rgba(0, 0, 0, 0.1);
 // 'playfair-light', 'montserrat-regular') qui pointaient tous vers exactement les
 // mêmes fichiers — fusionnés ici pour ne garder qu'un nom par poids (2026-07-16).
 $font-playfair: 'Playfair Display', Georgia, serif;
+$font-playfair-bold: 'playfair-display-bold', Georgia, serif;
+$font-playfair-italic: 'playfair-display-italic', Georgia, serif;
 $font-montserrat: 'montserrat-regular', Arial, sans-serif;
+$font-montserrat-medium: 'montserrat-medium', Arial, sans-serif;
+$font-montserrat-light: 'montserrat-light', Arial, sans-serif;
 $font-inter: 'inter-regular', Arial, sans-serif;
+$font-inter-medium: 'inter-medium', Arial, sans-serif;
+$font-inter-light: 'inter-extra-light', Arial, sans-serif;
+$font-script: 'Miama', cursive;
+
+// Déclinaisons de la couleur primaire (avant : 7 nuances de saumon codées en
+// dur un peu partout — #ef927b pour les hovers de texte, #df856d/#d4806a pour
+// les hovers de fond, #e99981 qui était une faute de frappe de #ea9981)
+$color-primary-light: #ef927b;
+$color-primary-dark: #d4806a;
+
+// Palette du hero/CTA de l'accueil (anciennement redéclarées en plein milieu du
+// fichier — $color-text-dark y était même écrasé de #333 à #222, un piège :
+// la même variable ne valait pas pareil avant et après la ligne 2398. La
+// nuance #222 vit maintenant sous son propre nom.)
+$color-salmon: #e0998a;
+$color-cream: #f9f6f0;
+$color-text-hero: #222222;
 
 $letter-spacing-logo: 3px;
 
@@ -126,7 +147,7 @@ $letter-spacing-logo: 3px;
 // (1.6em = le ratio historique 64px/40px du hero de la home).
 
 .font-script {
-  font-family: 'Miama', cursive;
+  font-family: $font-script;
   color: $color-primary;
   font-size: 1.6em;
   margin-left: 8px;
@@ -265,7 +286,7 @@ $letter-spacing-logo: 3px;
 // 1re pour un défilement sans coupure visible.
 
 .logos-marquee-label {
-  font-family: 'montserrat-medium', sans-serif;
+  font-family: $font-montserrat-medium;
   font-size: 0.8rem;
   letter-spacing: 2px;
   color: $color-text-dark;
@@ -323,7 +344,7 @@ $letter-spacing-logo: 3px;
   background-color: transparent;
 
   .prestation-card-title {
-    font-family: 'playfair-display-bold', Georgia, serif;
+    font-family: $font-playfair-bold;
     color: $color-light;
     font-size: 1.375rem;
     margin-bottom: 0;
@@ -365,11 +386,11 @@ $letter-spacing-logo: 3px;
 }
 
 .mariage-h2 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: $font-playfair;
 }
 
 .mariage-h3 {
-  font-family: 'playfair-display-bold', Georgia, serif;
+  font-family: $font-playfair-bold;
 }
 
 .mariage-h4 {
@@ -395,7 +416,7 @@ $letter-spacing-logo: 3px;
 }
 
 .text-montserrat {
-  font-family: 'montserrat', Arial, sans-serif;
+  font-family: $font-montserrat;
 }
 
 // --- FORMULE CARDS (tarifs) ---
@@ -512,7 +533,7 @@ $letter-spacing-logo: 3px;
       color 0.2s ease;
 
     &:hover {
-      background-color: color.adjust(#ea9981, $lightness: -10%);
+      background-color: color.adjust($color-primary, $lightness: -10%);
       color: $color-light;
     }
   }
@@ -651,7 +672,7 @@ $letter-spacing-logo: 3px;
     .illustration-contact__card-title {
       margin: 0;
       color: #2a160a;
-      font-family: 'Playfair Display', serif;
+      font-family: $font-playfair;
       font-size: 40px;
       font-weight: 400;
       line-height: 60px;
@@ -662,7 +683,7 @@ $letter-spacing-logo: 3px;
     .illustration-contact__description {
       max-width: 650px;
       color: #6b6258;
-      font-family: 'montserrat-regular', sans-serif;
+      font-family: $font-montserrat;
       font-size: 17px;
       line-height: 20px;
       letter-spacing: 0.1em;
@@ -677,10 +698,10 @@ $letter-spacing-logo: 3px;
     min-height: 69px;
     padding: 21px 18px;
     color: $color-dark;
-    background-color: #e99981;
+    background-color: $color-primary;
     border: 0;
     border-radius: 0;
-    font-family: 'Playfair Display', serif;
+    font-family: $font-playfair;
     font-size: 20px;
     font-weight: 500;
     line-height: 1;
@@ -696,7 +717,7 @@ $letter-spacing-logo: 3px;
     &:hover,
     &:focus-visible {
       color: $color-dark;
-      background-color: #df856d;
+      background-color: $color-primary-dark;
       transform: translateY(-2px);
     }
   }
@@ -851,8 +872,8 @@ $letter-spacing-logo: 3px;
     font-size: 20px;
 
     &:hover {
-      background-color: color.adjust(#ea9981, $lightness: -10%);
-      border-color: color.adjust(#ea9981, $lightness: -10%);
+      background-color: color.adjust($color-primary, $lightness: -10%);
+      border-color: color.adjust($color-primary, $lightness: -10%);
       color: $color-dark;
     }
   }
@@ -881,8 +902,8 @@ $letter-spacing-logo: 3px;
     font-size: 20px;
 
     &:hover {
-      background-color: color.adjust(#ea9981, $lightness: -10%);
-      border-color: color.adjust(#ea9981, $lightness: -10%);
+      background-color: color.adjust($color-primary, $lightness: -10%);
+      border-color: color.adjust($color-primary, $lightness: -10%);
       color: $color-dark;
     }
   }
@@ -897,7 +918,7 @@ $letter-spacing-logo: 3px;
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: color.adjust(#ea9981, $lightness: -10%);
+    background-color: color.adjust($color-primary, $lightness: -10%);
     color: $color-light;
   }
 }
@@ -910,7 +931,7 @@ $letter-spacing-logo: 3px;
 
 .page-footer {
   * {
-    font-family: 'inter-regular', Arial, sans-serif;
+    font-family: $font-inter;
   }
 
   body {
@@ -932,7 +953,7 @@ $letter-spacing-logo: 3px;
 
   .footer-heading {
     font-size: 16px;
-    font-family: 'inter-medium', Arial, sans-serif;
+    font-family: $font-inter-medium;
     color: $color-primary;
   }
 
@@ -956,7 +977,7 @@ $letter-spacing-logo: 3px;
 
 .page-contact {
   * {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: $font-playfair;
   }
 
   .contact-banner-mobile {
@@ -979,11 +1000,11 @@ $letter-spacing-logo: 3px;
     position: absolute;
     top: 20%;
     left: 5%;
-    font-family: 'playfair-display-bold', Georgia, serif;
+    font-family: $font-playfair-bold;
 
     .contact-hero-title__highlight {
       color: $color-primary;
-      font-family: 'playfair-display-italic', Georgia, serif;
+      font-family: $font-playfair-italic;
       font-size: clamp(2rem, 5vw, 4rem);
     }
   }
@@ -992,12 +1013,12 @@ $letter-spacing-logo: 3px;
     font-size: clamp(0.75rem, 1.5vw, 1.25rem);
 
     .contact-table__bold {
-      font-family: 'playfair-display-bold', Georgia, serif;
+      font-family: $font-playfair-bold;
     }
   }
 
   .contact-h3-italic {
-    font-family: 'playfair-display-italic', Georgia, serif;
+    font-family: $font-playfair-italic;
   }
 
   .contact-btn {
@@ -1012,7 +1033,7 @@ $letter-spacing-logo: 3px;
   }
 
   .contact-font {
-    font-family: 'inter-regular', Arial, sans-serif;
+    font-family: $font-inter;
   }
 
   .text-orange {
@@ -1020,7 +1041,7 @@ $letter-spacing-logo: 3px;
   }
 
   .contact-text-extralight {
-    font-family: 'inter-extra-light', Arial, sans-serif;
+    font-family: $font-inter-light;
     font-size: clamp(0.75rem, 1vw, 1rem);
   }
 
@@ -1029,7 +1050,7 @@ $letter-spacing-logo: 3px;
   }
 
   .contact-step-indicator {
-    font-family: 'inter-extra-light', Arial, sans-serif;
+    font-family: $font-inter-light;
     font-size: clamp(0.75rem, 1vw, 1rem);
   }
 }
@@ -1075,7 +1096,7 @@ $letter-spacing-logo: 3px;
       // saute au fallback suivant de la pile (Georgia Bold, visuellement une tout
       // autre police). On pointe explicitement vers la vraie graisse grasse.
       span {
-        font-family: 'playfair-display-bold', Georgia, serif;
+        font-family: $font-playfair-bold;
       }
 
       @media (max-width: 768px) {
@@ -1084,7 +1105,7 @@ $letter-spacing-logo: 3px;
     }
 
     &__text {
-      font-family: 'montserrat-medium', sans-serif;
+      font-family: $font-montserrat-medium;
       font-size: 24px;
       line-height: 1.6;
       max-width: 90%;
@@ -1117,8 +1138,8 @@ $letter-spacing-logo: 3px;
 
     &__highlight {
       @media (min-width: 768px) {
-        font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
-        color: #c87b57;
+        font-family: $font-script;
+        color: $color-primary;
         font-size: 1.25em;
         font-weight: normal;
         display: inline-block;
@@ -1350,7 +1371,7 @@ $letter-spacing-logo: 3px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: 'playfair-display-bold', Georgia, serif;
+        font-family: $font-playfair-bold;
         z-index: 2;
       }
 
@@ -1391,7 +1412,7 @@ $letter-spacing-logo: 3px;
 
       .step-subtitle {
         display: block;
-        font-family: 'Playfair Display', serif;
+        font-family: $font-playfair;
         font-style: italic;
         color: $color-light;
         margin-bottom: 12px;
@@ -1455,7 +1476,7 @@ $letter-spacing-logo: 3px;
     }
 
     &__title {
-      font-family: 'montserrat-medium', sans-serif;
+      font-family: $font-montserrat-medium;
       font-size: 16px;
       color: $color-text-dark;
       padding-right: 15px;
@@ -1700,7 +1721,7 @@ $letter-spacing-logo: 3px;
 
 .page-galerie {
   * {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: $font-playfair;
   }
 }
 
@@ -1712,29 +1733,29 @@ $letter-spacing-logo: 3px;
 
 .page-section-prestations {
   .section-presta__title {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: $font-playfair;
 
     .section-presta__title-bold {
-      font-family: 'playfair-display-bold', Georgia, serif;
+      font-family: $font-playfair-bold;
     }
   }
 
   .section-presta__btn {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: $font-playfair;
   }
 
   .section-presta__price {
     font-size: clamp(0.65rem, 1.5vw, 1rem);
-    font-family: 'montserrat-light', Arial, sans-serif;
+    font-family: $font-montserrat-light;
 
     .section-presta__price-amount {
-      font-family: 'montserrat-medium', Arial, sans-serif;
+      font-family: $font-montserrat-medium;
     }
   }
 
   .presta-title {
     width: 250px;
-    font-family: 'montserrat-medium', Arial, sans-serif;
+    font-family: $font-montserrat-medium;
     font-size: clamp(0.75rem, 1.5vw, 1.25rem);
   }
 
@@ -1843,7 +1864,7 @@ $letter-spacing-logo: 3px;
       gap: 18px;
       margin: 0 0 48px;
       color: $color-light;
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: $font-playfair;
       font-size: 64px;
       font-weight: 500;
       line-height: 1;
@@ -1852,13 +1873,13 @@ $letter-spacing-logo: 3px;
 
     &__title-normal {
       color: $color-light;
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: $font-playfair;
       font-style: normal;
     }
 
     &__title-script {
-      color: #e99981;
-      font-family: 'Miama', cursive;
+      color: $color-primary;
+      font-family: $font-script;
       font-size: 64px;
       font-style: italic;
       font-weight: 400;
@@ -1873,7 +1894,7 @@ $letter-spacing-logo: 3px;
       width: 571px;
       margin: 0;
       color: $color-light;
-      font-family: 'montserrat-medium', Arial, sans-serif;
+      font-family: $font-montserrat-medium;
       font-size: 24px;
       font-weight: 500;
       line-height: 1.25;
@@ -1904,7 +1925,7 @@ $letter-spacing-logo: 3px;
   .blog-category-link {
     display: block;
     color: $color-dark;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: $font-playfair;
     font-size: 24px;
     font-weight: 500;
     line-height: 1;
@@ -1917,7 +1938,7 @@ $letter-spacing-logo: 3px;
     &:hover,
     &:focus,
     &.active {
-      color: #ef927b;
+      color: $color-primary-light;
     }
   }
 
@@ -1934,7 +1955,7 @@ $letter-spacing-logo: 3px;
     border: 0;
     background-color: transparent;
     color: $color-dark;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: $font-playfair;
     font-size: 14px;
     font-weight: 500;
     line-height: 1.2;
@@ -1942,10 +1963,10 @@ $letter-spacing-logo: 3px;
 
     &:hover,
     &:focus {
-      color: #ef927b;
+      color: $color-primary-light;
     }
     &:focus-visible {
-      outline: 2px solid #ef927b;
+      outline: 2px solid $color-primary-light;
       outline-offset: 4px;
     }
   }
@@ -1968,7 +1989,7 @@ $letter-spacing-logo: 3px;
     a {
       display: block;
       color: $color-dark;
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: $font-playfair;
       font-size: 16px;
       font-weight: 500;
       line-height: 1.2;
@@ -1978,7 +1999,7 @@ $letter-spacing-logo: 3px;
 
       &:hover,
       &:focus {
-        color: #ef927b;
+        color: $color-primary-light;
       }
     }
   }
@@ -2034,7 +2055,7 @@ $letter-spacing-logo: 3px;
   .article-category {
     display: block;
     color: $color-primary;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: $font-playfair;
     font-size: 12px;
     font-weight: 500;
     font-style: italic;
@@ -2045,7 +2066,7 @@ $letter-spacing-logo: 3px;
   }
 
   .article-card-title {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: $font-playfair;
     font-size: 24px;
     font-weight: 400;
     line-height: 1;
@@ -2055,7 +2076,7 @@ $letter-spacing-logo: 3px;
   }
 
   .article-card-text {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: $font-playfair;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.4;
@@ -2065,7 +2086,7 @@ $letter-spacing-logo: 3px;
 
   .article-date {
     display: block;
-    font-family: 'inter-medium', Arial, sans-serif;
+    font-family: $font-inter-medium;
     font-size: 10px;
     font-weight: 600;
     line-height: 1;
@@ -2079,7 +2100,7 @@ $letter-spacing-logo: 3px;
     padding: 5px 15px;
     background-color: $color-primary;
     color: $color-light;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: $font-playfair;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.4;
@@ -2092,7 +2113,7 @@ $letter-spacing-logo: 3px;
 
     &:hover,
     &:focus {
-      background-color: #d4806a;
+      background-color: $color-primary-dark;
       color: $color-light;
     }
   }
@@ -2107,7 +2128,7 @@ $letter-spacing-logo: 3px;
     .form-control {
       border: 1px solid #cccccc;
       border-radius: 0;
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: $font-playfair;
       font-size: 14px;
       color: $color-dark;
       padding: 10px 14px;
@@ -2142,7 +2163,7 @@ $letter-spacing-logo: 3px;
   }
 
   .sidebar-heading {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: $font-playfair;
     font-size: 18px;
     font-weight: 500;
     color: $color-dark;
@@ -2165,7 +2186,7 @@ $letter-spacing-logo: 3px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: $font-playfair;
       font-size: 14px;
       font-weight: 400;
       color: $color-dark;
@@ -2219,7 +2240,7 @@ $letter-spacing-logo: 3px;
     }
 
     &__title {
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: $font-playfair;
       font-size: 13px;
       font-weight: 500;
       line-height: 1.3;
@@ -2228,7 +2249,7 @@ $letter-spacing-logo: 3px;
     }
 
     &__date {
-      font-family: 'inter-medium', Arial, sans-serif;
+      font-family: $font-inter-medium;
       font-size: 10px;
       font-weight: 600;
       color: rgba(0, 0, 0, 0.6);
@@ -2380,10 +2401,6 @@ $letter-spacing-logo: 3px;
    BANNER ACCUEIL (hero-accueil)
    ========================================== */
 
-$color-salmon: #e0998a;
-$color-cream: #f9f6f0;
-$color-text-dark: #222222;
-
 .hero-accueil {
   // Hauteur exacte du viewport : tout le hero est visible sans scroller,
   // quel que soit l'écran. svh évite le débordement dû à la barre d'URL mobile.
@@ -2473,7 +2490,7 @@ $color-text-dark: #222222;
     }
 
     .hero-accueil-indicator-label {
-      font-family: 'montserrat-regular', sans-serif;
+      font-family: $font-montserrat;
       font-size: 0.75rem;
       letter-spacing: 0.5px;
       color: $color-dark;
@@ -2483,7 +2500,7 @@ $color-text-dark: #222222;
 
   // Styles du titre
   .hero-accueil-title {
-    font-family: 'Playfair Display', serif;
+    font-family: $font-playfair;
     font-size: 40px;
     color: $color-dark;
     font-weight: 400;
@@ -2492,7 +2509,7 @@ $color-text-dark: #222222;
   }
   // Styles du sous-titre
   .hero-accueil-subtitle {
-    font-family: 'montserrat-regular', sans-serif;
+    font-family: $font-montserrat;
     font-size: 1.1rem;
     color: $color-dark;
     line-height: 1.6;
@@ -2505,7 +2522,7 @@ $color-text-dark: #222222;
     .btn {
       border-radius: 0;
       padding: 12px 28px;
-      font-family: 'Lato', sans-serif;
+      font-family: $font-montserrat;
       font-weight: 600;
       font-size: 0.85rem;
       letter-spacing: 1.5px;
@@ -2515,21 +2532,21 @@ $color-text-dark: #222222;
 
     .btn-accueil-primary {
       background-color: $color-primary;
-      color: $color-text-dark;
+      color: $color-text-hero;
 
       &:hover {
         background-color: color.adjust($color-salmon, $lightness: -10%);
-        color: $color-text-dark;
+        color: $color-text-hero;
       }
     }
 
     .btn-accueil-secondary {
       background-color: $color-cream;
-      color: $color-text-dark;
+      color: $color-text-hero;
 
       &:hover {
         background-color: color.adjust($color-cream, $lightness: -10%);
-        color: $color-text-dark;
+        color: $color-text-hero;
       }
     }
   }
@@ -2598,7 +2615,7 @@ $color-text-dark: #222222;
     max-width: 760px;
     margin: 0 auto;
     font-family: $font-inter;
-    color: $color-text-dark;
+    color: $color-text-hero;
     line-height: 1.7;
   }
 
@@ -2613,7 +2630,7 @@ $color-text-dark: #222222;
     }
 
     h3 {
-      font-family: 'montserrat-medium', sans-serif;
+      font-family: $font-montserrat-medium;
       font-size: 1.1rem;
       margin-top: 1.5rem;
       margin-bottom: 0.5rem;

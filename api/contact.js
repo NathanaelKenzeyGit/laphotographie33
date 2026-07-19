@@ -9,7 +9,7 @@ const TO_EMAIL = 'laphotographie33@gmail.com';
 // cette adresse de test fournie par Resend (fonctionne sans configuration DNS, mais
 // n'accepte d'envoyer qu'à l'adresse du compte Resend). Dès qu'un domaine est vérifié
 // (ex. contact@aurelien-lambert-photographe.fr), remplacer par cette adresse.
-const FROM_EMAIL = 'LA Photographie33 <onboarding@resend.dev>';
+const FROM_EMAIL = 'LA Photographie33 <contact@nathanaelk.fr>';
 
 const REQUIRED_FIELDS = ['nom', 'prenom', 'email', 'message'];
 
