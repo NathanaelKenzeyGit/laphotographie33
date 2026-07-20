@@ -1,8 +1,5 @@
-// ======================================================
-// Lightbox générique : réutilise une seule modale Bootstrap
-// pour agrandir n'importe quelle photo cliquable de la page
-// ======================================================
-
+// Lightbox générique : une seule modale Bootstrap réutilisée pour agrandir
+// n'importe quelle photo cliquable de la page.
 document.addEventListener('DOMContentLoaded', function () {
   const lightboxModalEl = document.getElementById('lightbox-modal');
   const lightboxImg = document.getElementById('lightbox-modal-img');

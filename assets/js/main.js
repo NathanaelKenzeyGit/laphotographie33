@@ -1,7 +1,4 @@
-// ======================================================
-// 1. CHARGEMENT DES COMPOSANTS AVEC JQUERY
-// ======================================================
-
+// Chargement des fragments (navbar/footer) en jQuery.
 $(document).ready(function () {
   // Charge un fragment HTML dans un conteneur, seulement s'il est présent sur la page
   function loadFragment(selector, url, onSuccess) {
@@ -41,13 +38,10 @@ $(document).ready(function () {
   initLayout();
 });
 
-// ======================================================
-// Indicateurs du carrousel hero (accueil)
-// ======================================================
-// Les indicateurs vivent hors de #hero-carousel pour des raisons de mise en page (le
-// carrousel est en position absolute plein cadre en fond de section), donc Bootstrap
-// ne les détecte pas tout seul pour gérer la classe .active (il ne regarde que les
-// indicateurs situés à l'intérieur de l'élément .carousel). On le fait à la main.
+// Les indicateurs du carrousel hero sont placés hors de #hero-carousel (le
+// carrousel est en position absolute plein cadre) : Bootstrap ne les gère donc
+// pas tout seul (il ne regarde que ses propres descendants), on toggle .active
+// à la main.
 const heroCarousel = document.getElementById('hero-carousel');
 if (heroCarousel) {
   heroCarousel.addEventListener('slide.bs.carousel', (event) => {
@@ -63,19 +57,15 @@ if (heroCarousel) {
   });
 }
 
-// ======================================================
-// Effets GSAP légers (entrées au scroll / au chargement)
-// ======================================================
-
+// Animations GSAP légères, entrées au scroll ou au chargement.
 gsap.registerPlugin(ScrollTrigger);
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Anime un chiffre de 0 à sa valeur cible au scroll, en réutilisant le texte déjà
-// présent dans le HTML (valeur + suffixe genre "+"/"%") pour ne dupliquer aucune donnée.
-// formatDot: true reformate le séparateur de milliers en "." (ex. "50.000") au lieu
-// de l'espace par défaut de toLocaleString('fr-FR'), pour coller au format déjà en
-// place sur la page "À propos".
+// Anime un chiffre de 0 à sa valeur cible au scroll, à partir du texte déjà
+// présent dans le HTML (valeur + suffixe "+"/"%"). formatDot: true remplace le
+// séparateur de milliers par un point (page "À propos") au lieu de l'espace
+// par défaut de toLocaleString('fr-FR').
 function animateCounters(selector, { formatDot = false } = {}) {
   document.querySelectorAll(selector).forEach((el) => {
     const raw = el.textContent.trim();
@@ -110,12 +100,9 @@ if (!prefersReducedMotion) {
     scrollTrigger: { trigger: '.menu__grid', start: 'top 80%' },
   });
 
-  // Hero accueil : entrée au chargement (contenu déjà visible à l'écran).
-  // Le <h1> est volontairement exclu : c'est l'élément LCP (Largest Contentful
-  // Paint) de la home, et un audit Lighthouse a montré qu'animer son opacity
-  // retarde son "paint stable" de plusieurs secondes en throttling (Chrome ne
-  // valide un LCP qu'une fois l'élément stabilisé) — un score LCP de 0.27/1 rien
-  // qu'à cause de ça. Le titre s'affiche donc immédiatement, sans fade.
+  // Hero accueil : entrée au chargement. Le <h1> n'est pas animé exprès : c'est
+  // l'élément LCP de la home, et l'audit Lighthouse a montré qu'un fade sur son
+  // opacity plombait le score LCP (0.27/1). Il s'affiche donc directement.
   gsap.from('.hero-accueil-subtitle, .hero-accueil-buttons, .hero-accueil-indicators', {
     duration: 0.9,
     opacity: 0,

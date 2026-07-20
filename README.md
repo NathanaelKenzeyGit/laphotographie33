@@ -135,8 +135,6 @@ n'est pas fait.
 
 ## Bugs connus / limites actuelles
 
-Liste à jour dans `AMELIORATIONS.md` (section technique). Point notable : le
-formulaire de contact fonctionne mais utilise l'adresse d'envoi de test de Resend
-(`onboarding@resend.dev`), qui ne peut recevoir que sur l'adresse du compte Resend
-tant qu'aucun domaine n'est vérifié — voir `GUIDE-DEPLOIEMENT.md` pour lever cette
-limite.
+Liste à jour dans `AMELIORATIONS.md` (section technique). Le formulaire de contact
+envoie depuis un domaine vérifié sur Resend (SPF/DKIM en place), donc sans la limite
+de l'adresse de test `onboarding@resend.dev` — pas de blocage particulier à ce niveau.

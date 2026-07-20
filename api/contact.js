@@ -2,16 +2,16 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Adresse qui reçoit les demandes de contact — le studio du photographe.
+// Boîte du studio, destinataire final du formulaire.
 const TO_EMAIL = 'laphotographie33@gmail.com';
 
-// Tant qu'aucun domaine n'est vérifié sur le compte Resend, l'envoi doit passer par
-// cette adresse de test fournie par Resend (fonctionne sans configuration DNS, mais
-// n'accepte d'envoyer qu'à l'adresse du compte Resend). Dès qu'un domaine est vérifié
-// (ex. contact@aurelien-lambert-photographe.fr), remplacer par cette adresse.
+// Domaine vérifié côté Resend (SPF/DKIM en place) : plus besoin de passer par
+// l'adresse de test onboarding@resend.dev.
 const FROM_EMAIL = 'LA Photographie33 <contact@nathanaelk.fr>';
 
 const REQUIRED_FIELDS = ['nom', 'prenom', 'email', 'message'];
+const MAX_FIELD_LENGTH = 200;
+const MAX_MESSAGE_LENGTH = 5000;
 
 function escapeHtml(value) {
   return String(value)
@@ -19,6 +19,20 @@ function escapeHtml(value) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+// Empêche l'injection d'en-têtes SMTP (retour à la ligne dans un champ utilisé
+// tel quel dans le sujet du mail).
+function stripLineBreaks(value) {
+  return String(value)
+    .replace(/[\r\n]+/g, ' ')
+    .trim();
+}
+
+function clip(value, maxLength = MAX_FIELD_LENGTH) {
+  return String(value ?? '')
+    .trim()
+    .slice(0, maxLength);
 }
 
 export default async function handler(req, res) {
@@ -35,21 +49,25 @@ export default async function handler(req, res) {
   }
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(body.email)) {
+  if (!emailPattern.test(String(body.email).trim())) {
     return res.status(400).json({ error: 'Adresse email invalide.' });
   }
 
+  if (String(body.message).trim().length > MAX_MESSAGE_LENGTH) {
+    return res.status(400).json({ error: 'Message trop long.' });
+  }
+
   const fields = {
-    prestation: body.prestation ?? '',
-    dateDebut: body.date_debut ?? '',
-    dateFin: body.date_fin ?? '',
-    budget: body.budget ?? '',
-    nom: body.nom ?? '',
-    prenom: body.prenom ?? '',
-    email: body.email ?? '',
-    telephone: body.telephone ?? '',
-    connuVia: body.connu_via ?? '',
-    message: body.message ?? '',
+    prestation: clip(body.prestation),
+    dateDebut: clip(body.date_debut),
+    dateFin: clip(body.date_fin),
+    budget: clip(body.budget),
+    nom: clip(body.nom),
+    prenom: clip(body.prenom),
+    email: clip(body.email),
+    telephone: clip(body.telephone),
+    connuVia: clip(body.connu_via),
+    message: clip(body.message, MAX_MESSAGE_LENGTH),
   };
 
   const html = `
@@ -69,7 +87,7 @@ export default async function handler(req, res) {
       from: FROM_EMAIL,
       to: TO_EMAIL,
       replyTo: fields.email,
-      subject: `Nouvelle demande de contact — ${fields.prestation || 'projet photo'}`,
+      subject: `Nouvelle demande de contact — ${stripLineBreaks(fields.prestation) || 'projet photo'}`,
       html,
     });
 

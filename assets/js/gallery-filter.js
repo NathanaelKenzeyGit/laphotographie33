@@ -1,7 +1,4 @@
-// ======================================================
-// Filtre de galerie par thématique (page prestations)
-// ======================================================
-
+// Filtre de galerie par thématique, page prestations.
 document.addEventListener('DOMContentLoaded', function () {
   const filterButtons = document.querySelectorAll('.galerie-filter-btn');
   const items = document.querySelectorAll('.galerie-filter-item');
